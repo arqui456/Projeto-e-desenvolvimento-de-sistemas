@@ -1,1 +1,0 @@
-docker run --publish 8000:8001 node-docker-backend
