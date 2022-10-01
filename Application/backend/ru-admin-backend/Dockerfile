@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM node:11-alpine
+FROM node:lts-alpine
 
 RUN mkdir -p /usr/src/app
 
