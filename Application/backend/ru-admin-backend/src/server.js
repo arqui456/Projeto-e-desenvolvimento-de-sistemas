@@ -5,7 +5,7 @@ const { log, ExpressAPILogMiddleware } = require('@rama41222/node-logger');
 
 const config = {
     name: 'sample-express-app',
-    port: 3000,
+    port: process.env.PORT || 3000,
     host: '0.0.0.0',
 };
 
