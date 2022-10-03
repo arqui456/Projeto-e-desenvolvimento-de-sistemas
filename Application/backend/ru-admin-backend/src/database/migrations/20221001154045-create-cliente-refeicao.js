@@ -3,29 +3,32 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
-    await queryInterface.createTable('users', {
+    await queryInterface.createTable('cliente_refeicao', {
       cliente_refeicao_id: {
         type: Sequelize.UUID,
-        defaultValue: Sequelize.UUIDV4,
         primaryKey: true,
-        autoIncrement: true,
+        default: Sequelize.fn('uuid_generate_v4'),
+      },
+      cliente_id: {
+        type: Sequelize.UUID,
         allowNull: false,
       },
-      /* cliente_id: {
+      refeicao_id: {
         type: Sequelize.UUID,
-        allowNull: Fasle
-      }
-      */
+        allowNull: false,
+      },
+      created_at: {
+        type: Sequelize.DATE,
+        allowNull: false,
+      },
+      updated_at: {
+        type: Sequelize.DATE,
+        allowNull: false,
+      },
     });
-
   },
 
   async down (queryInterface, Sequelize) {
-    /**
-     * Add reverting commands here.
-     *
-     * Example:
-     * await queryInterface.dropTable('users');
-     */
+     await queryInterface.dropTable('cliente_refeicao');
   }
 };

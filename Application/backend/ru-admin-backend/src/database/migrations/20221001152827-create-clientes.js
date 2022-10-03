@@ -3,13 +3,12 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
+    await queryInterface.sequelize.query('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"');
     await queryInterface.createTable('clientes', {
       cliente_id: {
         type: Sequelize.UUID,
-        defaultValue: Sequelize.UUIDV4,
         primaryKey: true,
-        autoIncrement: true,
-        allowNull: false,
+        default: Sequelize.fn('uuid_generate_v4'),
       },
       nome: {
         type: Sequelize.STRING,
@@ -25,6 +24,11 @@ module.exports = {
         allowNull: false,
         unique: true,
       },
+      chave_pessoal: {
+        type: Sequelize.UUID,
+        default: Sequelize.fn('uuid_generate_v4'),
+        allowNull: false,
+      },
       created_at: {
         type: Sequelize.DATE,
         allowNull: false,
@@ -37,11 +41,6 @@ module.exports = {
   },
 
   async down (queryInterface, Sequelize) {
-    /**
-     * Add reverting commands here.
-     *
-     * Example:
-     * await queryInterface.dropTable('users');
-     */
+    await queryInterface.dropTable('clientes');
   }
 };

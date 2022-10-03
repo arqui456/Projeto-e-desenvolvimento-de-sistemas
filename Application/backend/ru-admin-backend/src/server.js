@@ -3,7 +3,8 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const { log, ExpressAPILogMiddleware } = require('@rama41222/node-logger');
 
-import routes from './routes';
+const routes = require('./routes');
+require('./database');
 
 const config = {
     name: 'sample-express-app',
@@ -14,7 +15,7 @@ const config = {
 const app = express();
 const logger = log({ console: true, file: false, label: config.name });
 
-app.use(bodyParser.json());
+app.use(express.json());
 app.use(cors());
 app.use(ExpressAPILogMiddleware(logger, { request: true }));
 app.use(routes);
