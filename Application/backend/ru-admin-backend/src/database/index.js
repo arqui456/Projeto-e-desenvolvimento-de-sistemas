@@ -11,4 +11,8 @@ Cliente.init(connection);
 Refeicao.init(connection);
 ClienteRefeicao.init(connection);
 
+Cliente.associate(connection.models);
+Refeicao.associate(connection.models);
+ClienteRefeicao.associate(connection.models);
+
 module.exports = connection;

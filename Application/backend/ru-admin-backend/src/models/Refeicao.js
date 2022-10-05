@@ -18,12 +18,13 @@ class Refeicao extends Model {
   }
 
   static associate(models) {
-    Refeicao.hasMany(models.ClienteRefeicao, { 
+    this.hasMany(models.ClienteRefeicao, { 
       foreignKey: 'refeicao_id',
+      as: 'clientes',
       onDelete: 'SET NULL' ,
       onUpdate: 'CASCADE',
-      constraints: true,
-    })
+      // constraints: true,
+    });
   }
 }
 

@@ -8,7 +8,7 @@ module.exports = {
       cliente_id: {
         type: Sequelize.UUID,
         primaryKey: true,
-        default: Sequelize.fn('uuid_generate_v4'),
+        defaultValue: Sequelize.literal( 'uuid_generate_v4()' ),
       },
       nome: {
         type: Sequelize.STRING,
@@ -24,10 +24,10 @@ module.exports = {
         allowNull: false,
         unique: true,
       },
-      chave_pessoal: {
-        type: Sequelize.UUID,
-        default: Sequelize.fn('uuid_generate_v4'),
+      qtd_refeicoes_gratis: {
+        type: Sequelize.INTEGER,
         allowNull: false,
+        defaultValue: 0,
       },
       created_at: {
         type: Sequelize.DATE,

@@ -17,8 +17,8 @@ class ClienteRefeicao extends Model {
   }
 
   static associate(models) {
-    ClienteRefeicao.belongsTo(models.Cliente);
-    ClienteRefeicao.belongsTo(models.Refeicao);
+    this.belongsTo(models.Cliente, {foreignKey: 'cliente_id', as: 'clienteInfo'});
+    this.belongsTo(models.Refeicao, {foreignKey: 'refeicao_id', as: 'registros'});
   }
 }
 

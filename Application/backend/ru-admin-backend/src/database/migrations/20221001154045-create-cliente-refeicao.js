@@ -7,15 +7,21 @@ module.exports = {
       cliente_refeicao_id: {
         type: Sequelize.UUID,
         primaryKey: true,
-        default: Sequelize.fn('uuid_generate_v4'),
+        defaultValue: Sequelize.literal( 'uuid_generate_v4()' ),
       },
       cliente_id: {
         type: Sequelize.UUID,
         allowNull: false,
+        references: { model: 'clientes', key: 'cliente_id'},
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL',
       },
       refeicao_id: {
         type: Sequelize.UUID,
         allowNull: false,
+        references: { model: 'refeicoes', key: 'refeicao_id'},
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL',
       },
       created_at: {
         type: Sequelize.DATE,

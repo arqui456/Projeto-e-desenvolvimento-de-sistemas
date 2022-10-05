@@ -7,7 +7,7 @@ module.exports = {
       refeicao_id: {
         type: Sequelize.UUID,
         primaryKey: true,
-        default: Sequelize.fn('uuid_generate_v4'),
+        defaultValue: Sequelize.literal( 'uuid_generate_v4()' ),
       },
       nome: {
         type: Sequelize.STRING,
