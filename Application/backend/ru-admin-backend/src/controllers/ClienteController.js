@@ -1,14 +1,14 @@
 const Cliente = require('../models/Cliente');
-const Refeicao = require('../models/Refeicao');
 
 module.exports = {
   async store(req, res) {
     try {
-      const { nome, matricula, cpf } = req.body;
+      const { nome, matricula, cpf, qtd_refeicoes_gratis } = req.body;
       const cliente = await Cliente.create({ nome, matricula, cpf});
       return res.status(200).json(cliente);
     } catch (err) {
-      return res.status(500).json({error: err.name});
+      console.error(err);
+      return res.status(500).json({error: 'Ocorreu um erro ao salvar o cliente.'});
     }
   },
 
@@ -28,30 +28,23 @@ module.exports = {
       if (!cliente){
         return res.status(400).json({error: 'cliente nao encontrado.'});
       }
-
       return res.json(cliente);
     } catch (err) {
-      console.log(err)
-      return res.status(500).json({error: err});
+      console.error(err);
+      return res.status(500).json({error: 'Ocorreu um erro o recuperar as informacoes do cliente.'});
     }
   },
 
-  async registerMeal(req, res) {
+  async bulkUpsert(req, res) {
     try {
-      const { cliente_id } = req.params;
-      const { nome } = req.body;
-      
-      const cliente = await Cliente.findByPk(cliente_id);
-      const refeicao = await Refeicao.findOne({ where: {nome} });
-      if (!cliente || !refeicao ){
-        return res.status(400).json({error: 'cliente ou tipo de refeicao nao encontrado.'});
-      }
-      await cliente.addRefeicoes(refeicao);
-      return res.json(cliente);
+      const clientes = [];
+      Cliente.bulkCreate(clientes, {
+        fields: ['ativo', 'qtd_refeicoes_gratis'],
+        updateOnDuplicate: ['ativo', 'qtd_refeicoes_gratis']
+      });
     } catch (err) {
-      console.log(err)
-      return res.status(500).json({error: err});
+      console.error(err);
+      return res.status(500).json({error: 'Ocorreu um erro ao atualizar as informacoes dos clientes.'});
     }
-  },
-
+  }
 }

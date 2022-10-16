@@ -1,41 +1,51 @@
-
+const { Op } = require("sequelize");
 
 const filterWithJustStart = (startDate) => {
-  return ({ 
+  return ({
     where: {
       createdAt: {
-        [Op.gte]: startDate,
+        [Op.gte]: new Date(startDate),
       }
     },
-    indclude: { association: 'clienteInfo'}
+    ...association,
   });
 }
 
 const filterWithJustEnd = (endDate) => {
-  return ({ 
+  return ({
     where: {
       createdAt: {
         [Op.lte]: endDate,
       }
-  },
-  indclude: { association: 'clienteInfo'}
+    },
+    ...association,
   });
 }
 
 const filterWithStartEnd = (endDate) => {
-  return ({ 
+  return ({
     where: {
       createdAt: {
         [Op.gte]: startDate,
         [Op.lte]: endDate,
       }
-   },
-   indclude: { association: 'clienteInfo'}
+    },
+    ...association
   });
+}
+
+const association = {
+  include: [{
+    association: 'clienteInfo',
+    attributes: ['nome', 'matricula', 'cpf'],
+  }, {
+    association: 'refeicaoInfo',
+    attributes: ['nome'],
+  }]
 }
 
 
 
 module.exports = {
-  filterWithJustStart, filterWithJustEnd, filterWithStartEnd
-}
+    filterWithJustStart, filterWithJustEnd, filterWithStartEnd, association
+  }

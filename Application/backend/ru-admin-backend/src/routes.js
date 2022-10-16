@@ -15,9 +15,7 @@ router.get('/cliente', ClienteController.getCliente);
 
 router.post('/cliente', ClienteController.store);
 
-router.post('/cliente/:cliente_id/registrar-refeicao', ClienteController.registerMeal);
-
-router.post('/tipo_refeicao', RefeicaoController.store);
+router.post('/refeicao/:cliente_id/registrar-refeicao', ClienteRefeicaoController.registerMeal);
 
 router.get('/refeicao', ClienteRefeicaoController.getRefeicoes);
 

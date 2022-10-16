@@ -1,4 +1,4 @@
-const { Model, DataTypes, fn } = require('sequelize');
+const { Model, DataTypes } = require('sequelize');
 
 class Cliente extends Model {
   static init(connection) {
@@ -10,7 +10,8 @@ class Cliente extends Model {
       nome: DataTypes.STRING,
       matricula: DataTypes.STRING,
       cpf: DataTypes.STRING,
-      // qtd_refeicoes_gratis: DataTypes.INTEGER,
+      qtd_refeicoes_gratis: DataTypes.INTEGER,
+      ativo: DataTypes.BOOLEAN,
     }, {
       sequelize: connection,
       tableName: 'clientes'
@@ -25,14 +26,6 @@ class Cliente extends Model {
       as: 'refeicoes',
       // constraints: true,
     });
-  //   this.belongsToMany(models.Refeicao, { 
-  //     foreignKey: 'cliente_id',
-  //     through: 'cliente_refeicao',
-  //     as: 'refeicoes',
-  //     // onDelete: 'SET NULL' ,
-  //     // onUpdate: 'CASCADE',
-  //     // constraints: true,
-  //   });
   }
 }
 
