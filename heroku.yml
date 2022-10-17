@@ -1,7 +1,9 @@
 build:
   docker:
-    worker: /Application/backend/ru-admin-backend/Dockerfile.worker
-    web: /Application/frontend/ru-admin-frontend/Dockerfile.web
+    web: /Application/backend/ru-admin/backend/Dockerfile.worker
+    #worker: /Application/backend/ru-admin-backend/Dockerfile.worker
+    #web: /Application/frontend/ru-admin-frontend/Dockerfile.web
 run:
-  worker:  npm run start
   web: npm run start
+  #worker:  npm run start
+  #web: npm run start
