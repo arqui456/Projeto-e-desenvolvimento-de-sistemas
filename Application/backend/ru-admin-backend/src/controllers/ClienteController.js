@@ -3,8 +3,8 @@ const Cliente = require('../models/Cliente');
 module.exports = {
   async store(req, res) {
     try {
-      const { nome, matricula, cpf, qtd_refeicoes_gratis } = req.body;
-      const cliente = await Cliente.create({ nome, matricula, cpf});
+      const { nome, matricula, cpf, qtd_refeicoes_gratis, ativo } = req.body;
+      const cliente = await Cliente.create({ nome, matricula, cpf, qtd_refeicoes_gratis, ativo});
       return res.status(200).json(cliente);
     } catch (err) {
       console.error(err);

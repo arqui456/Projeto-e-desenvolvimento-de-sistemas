@@ -2,7 +2,7 @@ const ClienteRefeicao = require('../models/ClienteRefeicao');
 const Refeicao = require('../models/Refeicao');
 const Cliente = require("../models/Cliente");
 const { LIMIT_ALMOCO, ALMOCO, JANTAR } = require('../utils/constants');
-const { filterWithJustStart, filterWithStartEnd, filterWithJustEnd } = require("../utils/clienteRefeicaoHelper");
+const { filterWithJustStart, filterWithStartEnd, filterWithJustEnd, association } = require("../utils/clienteRefeicaoHelper");
 
 
 module.exports = {
@@ -18,7 +18,7 @@ module.exports = {
       } else if (endDate) {
         refeicoes = await ClienteRefeicao.findAll(filterWithJustEnd(startDate));
       } else {
-        refeicoes = await ClienteRefeicao.findAll(getAssociation());
+        refeicoes = await ClienteRefeicao.findAll(association);
       }
       return res.status(200).json(refeicoes);
     } catch (err) {
