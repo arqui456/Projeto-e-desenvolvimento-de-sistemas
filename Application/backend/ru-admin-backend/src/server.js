@@ -25,6 +25,9 @@ app.use("/api-documentation", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 app.use(ExpressAPILogMiddleware(logger, { request: true }));
 app.use(routes);
 
+app.get('/health', (req, res) => {
+    res.status(200).send('hello world');
+});
 
 app.listen(config.port, config.host, (e)=> {
     if(e) {
