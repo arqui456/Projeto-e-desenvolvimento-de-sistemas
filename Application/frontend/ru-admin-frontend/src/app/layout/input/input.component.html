@@ -1,0 +1,14 @@
+<div class="input-container">
+    <input
+        id="{{ 'input-' + tipoEntrada + '_' + id }}"
+        [type]="tipoEntrada"
+        [disabled]="isDisabled"
+        [placeholder]="placeholder"
+        (ngModelChange)="onChangeValue($event.toString())"
+        [class.erro]="mostraErro"
+    />
+    <div class="erro-container" *ngIf="mostraErro">
+        <app-icon [icon]="'highlight_off'"></app-icon>
+        <span class="msg-erro">{{ msgErro }}</span>
+    </div>
+</div>
