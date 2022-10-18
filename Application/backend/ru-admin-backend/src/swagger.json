@@ -1,0 +1,185 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Gestao RU"
+    },
+    "servers": [{
+        "url": "http://localhost:3000/",
+        "description": "API de teste"
+    }],
+    "paths": {
+        "/cliente": {
+            "get": {
+                "summary": "Recuperar clinte",
+                "description": "Rota recuperar os dados completos de um cliente",
+                "tags": ["Cliente"],
+                "parameters": [{
+                    "in": "query",
+                    "name": "matricula",
+                    "required": true,
+                    "schema": {"type": "string"}
+                }, {
+                    "in": "query",
+                    "name": "cpf",
+                    "required": false,
+                    "schema": {"type": "string"}
+                }],
+                "responses": {
+                    "500": {
+                        "description": "Ocorreu um erro ao salvar o cliente."
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Cliente"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "Cadastro de um cliente",
+                "description": "Rota temporaria para cadastrar um cliente",
+                "tags": ["Cliente"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "nome": {"type": "string"},
+                                    "matricula": {"type": "string"},
+                                    "cpf": {"type": "string"},
+                                    "qtd_refeicoes_gratis": {"type": "integer"},
+                                    "ativo": {"type": "boolean"}
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "500": {
+                        "description": "Ocorreu um erro ao cadastrar o cliente."
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Cliente"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/refeicao": {
+            "get": {
+                "summary": "Recuperar refeicoes",
+                "description": "Rota que recupera as refeicoes feitas no intervalo determinado. Se nenhum intervalo for fornecido, retorna todas as refeicoes feitas.",
+                "tags": ["Refeicao"],
+                "parameters": [{
+                    "in": "query",
+                    "name": "startDate",
+                    "schema": {"type": "string", "pattern": "yyyy-MM-dd"}
+                }, {
+                    "in": "query",
+                    "name": "endDate",
+                    "required": false,
+                    "schema": {"type": "string", "pattern": "yyyy-MM-dd"}
+                }],
+                "responses": {
+                    "500": {
+                        "description": "Ocorreu um erro ao recuperar as refeicoes."
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "cliente_refeicao_id": {"type": "string", "format": "uuid"},
+                                        "cliente_id": {"type": "string", "format": "uuid"},
+                                        "refeicao_id": {"type": "string", "format": "uuid"},
+                                        "created_at": {"type": "string", "format": "date-time"},
+                                        "updated_at": {"type": "string", "format": "date-time"},
+                                        "clienteInfo": {
+                                            "type": "object",
+                                            "properties": {
+                                                "nome": {"type": "string"},
+                                                "matricula": {"type": "string"},
+                                                "cpf": {"type": "string"}
+                                            }
+                                        },
+                                        "refeicaoInfo": {
+                                            "type": "object",
+                                            "properties": {
+                                                "nome": {"type": "string"}
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/refeicao/{cliente_id}/registrar-refeicao": {
+            "post": {
+                "summary": "Registrar refeicao",
+                "description": "Rota que registra a refeicao feita por um cliente.",
+                "tags": ["Refeicao"],
+                "parameters": [{
+                    "in": "path",
+                    "name": "cliente_id",
+                    "schema": {"type": "string", "format": "uuid"}
+                }],
+                "responses": {
+                    "500": {
+                        "description": "Ocorreu um erro ao registrar a refeicao."
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "cliente_refeicao_id": {"type": "string", "format": "uuid"},
+                                        "cliente_id": {"type": "string", "format": "uuid"},
+                                        "refeicao_id": {"type": "string", "format": "uuid"},
+                                        "created_at": {"type": "string", "format": "date-time"},
+                                        "updated_at": {"type": "string", "format": "date-time"}
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Cliente": {
+                "type": "object",
+                "properties": {
+                    "cliente_id": {"type": "string", "format": "uuid"},
+                    "nome": {"type": "string"},
+                    "matricula": {"type": "string"},
+                    "cpf": {"type": "string"},
+                    "qtd_refeicoes_gratis": {"type": "integer"},
+                    "ativo": {"type": "boolean"},
+                    "created_at": {"type": "string", "format": "date-time"},
+                    "updated_at": {"type": "string", "format": "date-time"}
+                }
+            }
+        }
+    }
+}
