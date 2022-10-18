@@ -16,6 +16,7 @@ export class InputComponent implements OnInit {
   @Input() id: string = '';
   @Input() loading: boolean = false;
   @Input() overflowEllipsis: boolean = false;
+  @Input() inputSize: 'sm' | 'md' | 'lg' = 'sm';
 
   @Output() inputValueChange: EventEmitter<string> = new EventEmitter<string>();
 

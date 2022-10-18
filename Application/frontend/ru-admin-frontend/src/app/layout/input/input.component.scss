@@ -12,6 +12,18 @@ input {
     color: var(--secondary);
 }
 
+.sm {
+    width: 200px;
+}
+
+.md {
+    width: 250px;
+}
+
+.lg {
+    width: 300px;
+}
+
 .erro-container {
     display: flex;
     flex-direction: row;

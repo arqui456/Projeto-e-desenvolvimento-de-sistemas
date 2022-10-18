@@ -9,7 +9,7 @@ export class ButtonComponent implements OnInit {
 
   @Input() btnLabel: string = 'Default';
   @Input() btnClass: 'button' | 'outline' | 'text' = 'button';
-  @Input() boxShadow: boolean = true;
+  @Input() boxShadow: boolean = false;
   @Input() btnDisabled: boolean = false;
   @Input() btnIcon: boolean = false;
   @Input() btnIconName: string = 'favorite';
