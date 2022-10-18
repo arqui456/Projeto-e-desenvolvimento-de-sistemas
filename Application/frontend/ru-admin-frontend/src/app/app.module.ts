@@ -10,6 +10,8 @@ import { HeaderComponent } from './components/template/header/header.component';
 import { ConsultComponent } from './components/template/consult/consult.component';
 
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { LayoutModule } from './layout/layout.module';
+import { PagesModule } from './pages/pages.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatToolbarModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    LayoutModule,
+    PagesModule
   ],
   providers: [],
   bootstrap: [AppComponent]
