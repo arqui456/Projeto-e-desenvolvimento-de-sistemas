@@ -1,6 +1,6 @@
 button {
     display: flex;
-    align-items: center;
+    // align-items: center;
     justify-content: center;
     gap: 0.2rem;
     // font-family: "Noto Sans", sans-serif;
@@ -8,27 +8,28 @@ button {
     line-height: 1.27rem;
     padding: 0.5rem 1rem;
     border-color: transparent;
-    border-radius: 0.38rem;
+    border-radius: 0.15rem;
     cursor: pointer;
     background-color: transparent;
     transition: all 0.3s;
   }
   
   .sm {
-    font-size: 0.75rem;
+    // font-size: 0.75rem;
+    line-height: 0.7rem !important;
     min-width: 4.5rem;
     height: 2rem;
   }
   
   .md {
     font-size: 0.875rem;
-    min-width: 5rem;
+    min-width: 240px;
     height: 2.25rem;
   }
   
   .lg {
     font-size: 1rem;
-    min-width: 5.8rem;
+    min-width: 383px;
     height: 2.6rem;
   }
   

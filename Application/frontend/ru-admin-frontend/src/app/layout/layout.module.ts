@@ -5,7 +5,8 @@ import { ButtonComponent } from './button/button.component';
 import { IconComponent } from './icon/icon.component';
 import { LogoComponent } from './logo/logo.component';
 import {MatIconModule} from '@angular/material/icon';
-import { ContainerConteudoComponent } from './container-conteudo/container-conteudo.component'
+import { ContainerConteudoComponent } from './container-conteudo/container-conteudo.component';
+import { SidebarComponent } from './sidebar/sidebar.component'
 
 
 
@@ -15,7 +16,8 @@ import { ContainerConteudoComponent } from './container-conteudo/container-conte
     ButtonComponent,
     IconComponent,
     LogoComponent,
-    ContainerConteudoComponent
+    ContainerConteudoComponent,
+    SidebarComponent
   ],
   imports: [
     CommonModule,
@@ -26,7 +28,8 @@ import { ContainerConteudoComponent } from './container-conteudo/container-conte
     ButtonComponent,
     IconComponent,
     LogoComponent,
-    ContainerConteudoComponent
+    ContainerConteudoComponent,
+    SidebarComponent
   ]
 })
 export class LayoutModule { }
