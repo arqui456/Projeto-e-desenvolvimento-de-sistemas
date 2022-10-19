@@ -1,0 +1,32 @@
+<app-container-conteudo [class]="'controle-padding d-flex'">
+    <section id="info-usuario-refeicao" class="gap">
+        <span id="nome-usuario">{{ usuario.nome | titlecase }}</span>
+        <span id="cpf-usuario"><strong>CPF: </strong>{{ usuario.cpf | cpf }}</span>
+        <span id="numero-matricula-usuario"><strong>Matrícula: </strong> {{ usuario.numeroMatricula }}</span>
+    </section>
+
+    <section id="info-gratuidade" class="gap">
+        <span id="icon-container">
+                <app-icon
+                    [icon]="getUserIcon()"
+                    [size]="'lg'"
+                    class="refeicao-color"
+                ></app-icon>
+        </span>
+        <span id="tipo-refeicao-text" class="refeicao-color">{{ getTextoRefeicao() | uppercase}}</span> 
+    </section>
+
+    <section id="buttons" class="gap">
+        <app-button
+            [btnLabel]="'voltar'"
+            [btnSize]="'sm'"
+        >
+        </app-button>
+        <app-button
+            [btnLabel]="'confirmar refeição'"
+            [btnColor]="'primary'"
+            [btnSize]="'md'"
+        >
+        </app-button>
+    </section>
+</app-container-conteudo>

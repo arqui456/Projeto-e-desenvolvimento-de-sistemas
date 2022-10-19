@@ -1,0 +1,19 @@
+<app-container-conteudo [class]="'controle-padding d-flex'">
+    <h2 id="title">Consultar Usuário</h2>
+    <section class="gap">
+        <!-- tamanho máximo pendente, verificar com o danilo -->
+        <app-input
+            [placeholder]="'CPF ou Número de Matrícula'"
+            [tipoEntrada]="'number'"
+            [inputSize]="'lg'"
+        >
+        </app-input>
+        <app-button
+            [btnLabel]="'validar usuário'"
+            [btnSize]="'lg'"
+            [btnColor]="'primary'"
+        ></app-button>
+    </section>
+</app-container-conteudo>
+
+<app-valida-usuario *ngIf="false"></app-valida-usuario>
