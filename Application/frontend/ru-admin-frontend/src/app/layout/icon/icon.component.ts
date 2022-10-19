@@ -9,7 +9,7 @@ export class IconComponent implements OnInit {
 
   @Input() icon: string = '';
   @Input() color: string = '';
-  // @Input() size: number = 16;
+  @Input() size: string = '';
 
   constructor() { }
 
