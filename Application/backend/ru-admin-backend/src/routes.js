@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const multer = require('multer');
+const upload = multer({dest: 'uploads/'}).single('fileupload');
 
 
 const ClienteController = require('./controllers/ClienteController');
@@ -10,6 +12,8 @@ const ClienteRefeicaoController = require('./controllers/ClienteRefeicaoControll
 router.get('/', (req, res) => {
   res.status(200).send('hello world');
 });
+
+router.post('/cliente/update', upload, ClienteController.bulkUpsert);
 
 router.get('/cliente', ClienteController.getCliente);
 

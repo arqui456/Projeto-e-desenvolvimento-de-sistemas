@@ -15,7 +15,13 @@ class Cliente extends Model {
       ativo: DataTypes.BOOLEAN,
     }, {
       sequelize: connection,
-      tableName: 'clientes'
+      tableName: 'clientes',
+      indexes: [
+        {
+          unique: true,
+          fields: ['cpf', 'matricula']
+        }
+      ]
     });
   }
 
