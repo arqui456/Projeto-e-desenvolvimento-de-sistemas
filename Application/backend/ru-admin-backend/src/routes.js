@@ -3,24 +3,27 @@ const router = express.Router();
 const multer = require('multer');
 const upload = multer({dest: 'uploads/'}).single('fileupload');
 
-
 const ClienteController = require('./controllers/ClienteController');
 const RefeicaoController = require('./controllers/RefeicaoController');
 const ClienteRefeicaoController = require('./controllers/ClienteRefeicaoController');
+const UsuarioController = require('./controllers/UsuarioController');
+const { verifyJWT, onlySuperUser } = require('./utils/middlewares');
 
 
 router.get('/', (req, res) => {
   res.status(200).send('hello world');
 });
 
-router.post('/cliente/update', upload, ClienteController.bulkUpsert);
+router.post('/user/login', UsuarioController.login);
 
-router.get('/cliente', ClienteController.getCliente);
+router.post('/cliente/update', verifyJWT, onlySuperUser, upload, ClienteController.bulkUpsert);
 
-router.post('/cliente', ClienteController.store);
+router.get('/cliente', verifyJWT, ClienteController.getCliente);
 
-router.post('/refeicao/:cliente_id/registrar-refeicao', ClienteRefeicaoController.registerMeal);
+router.post('/cliente', verifyJWT, onlySuperUser, ClienteController.store);
 
-router.get('/refeicao', ClienteRefeicaoController.getRefeicoes);
+router.post('/refeicao/:cliente_id/registrar-refeicao', verifyJWT, ClienteRefeicaoController.registerMeal);
+
+router.get('/refeicao', verifyJWT, onlySuperUser, ClienteRefeicaoController.getRefeicoes);
 
 module.exports = router;
