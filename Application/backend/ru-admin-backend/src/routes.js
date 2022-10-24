@@ -8,6 +8,7 @@ const RefeicaoController = require('./controllers/RefeicaoController');
 const ClienteRefeicaoController = require('./controllers/ClienteRefeicaoController');
 const UsuarioController = require('./controllers/UsuarioController');
 const { verifyJWT, onlySuperUser } = require('./utils/middlewares');
+const RelatorioController = require('./controllers/RelatorioController');
 
 
 router.get('/', (req, res) => {
@@ -25,5 +26,7 @@ router.post('/cliente', verifyJWT, onlySuperUser, ClienteController.store);
 router.post('/refeicao/:cliente_id/registrar-refeicao', verifyJWT, ClienteRefeicaoController.registerMeal);
 
 router.get('/refeicao', verifyJWT, onlySuperUser, ClienteRefeicaoController.getRefeicoes);
+
+router.get('/relatorio/por-aluno', verifyJWT, onlySuperUser, RelatorioController.getPorAluno);
 
 module.exports = router;
