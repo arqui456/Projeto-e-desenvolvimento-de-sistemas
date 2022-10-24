@@ -170,3 +170,14 @@ label span:nth-child(3) {
 //   background-color: red;
 //   color: red;
 // } 
+
+.button {
+  background-color: var(--primary);
+  color: white;
+  border: 0;
+  margin-right: 1%;
+}
+
+.spacer {
+  flex: 1 1 auto; 
+}
