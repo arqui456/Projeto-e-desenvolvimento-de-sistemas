@@ -1,0 +1,59 @@
+<app-container-conteudo [class]="'controle-padding d-flex'">
+    <div class="boas-vindas mb">
+        <app-logo></app-logo>
+        <p class="text">Olá, o que você gostaria de fazer?</p>
+        
+    </div>
+  <app-button
+    [btnLabel]="'GERAR RELATÓRIO DIÁRIO'"
+    [btnClass]="'button'"
+    [btnIcon]="true"
+    [btnIconName]="'arrow_downward'"
+    [btnIconPosition]="'left'"
+    [btnSize]="'lg'"
+    [btnColor]="'primary'"
+    class="mb"
+  ></app-button>
+
+  <app-button
+    [btnLabel]="'GERAR RELATÓRIO DE ALUNOS'"
+    [btnClass]="'button'"
+    [btnIcon]="true"
+    [btnIconName]="'arrow_downward'"
+    [btnIconPosition]="'left'"
+    [btnSize]="'lg'"
+    [btnColor]="'primary'"
+    class="mb"
+  ></app-button>
+
+  <div class="aluno-search mb" >
+    <app-input [placeholder]="'Aluno'" [inputSize]="'md'"> </app-input>
+    <app-button
+        [btnLabel]="'BUSCAR'"
+        [btnClass]="'outline'"
+        [btnIcon]="true"
+        [btnIconName]="'search'"
+        [btnIconPosition]="'left'"
+        [btnSize]="'sm'"
+        [btnColor]="'primary'"
+    ></app-button>
+  </div>
+  
+  <app-button
+    [btnLabel]="'GERENCIAR FUNCIONÁRIOS'"
+    [btnClass]="'button'"
+    [btnIconPosition]="'left'"
+    [btnSize]="'lg'"
+    [btnColor]="'primary'"
+    class="mb"
+  ></app-button>
+  <app-button
+    [btnLabel]="'enviar base de dados'"
+    [btnClass]="'button'"
+    [btnIcon]="true"
+    [btnIconName]="'send'"
+    [btnIconPosition]="'left'"
+    [btnSize]="'lg'"
+    [btnColor]="'primary'"
+  ></app-button>
+</app-container-conteudo>

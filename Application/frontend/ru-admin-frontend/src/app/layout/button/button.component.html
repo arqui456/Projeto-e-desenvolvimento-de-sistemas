@@ -1,0 +1,21 @@
+<button
+  [ngClass]="btnClass"
+  [class.box-shadow]="boxShadow"
+  [class.reverse-items]="btnIconPosition == 'left'"
+  [class.sm]="btnSize == 'sm'"
+  [class.md]="btnSize == 'md'"
+  [class.lg]="btnSize == 'lg'"
+  [class.default]="btnColor == 'default'"
+  [class.primary]="btnColor == 'primary'"
+  [class.secondary]="btnColor == 'secondary'"
+  [class.danger]="btnColor == 'danger'"
+  (click)="handleBtnAction($event)"
+  [disabled]="btnDisabled"
+>
+  {{ btnLabel | uppercase }}
+  <app-icon
+    *ngIf="btnIcon"
+    [icon] = "btnIconName"
+    >{{ btnIconName }}</app-icon
+  >
+</button>

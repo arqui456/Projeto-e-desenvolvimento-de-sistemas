@@ -1,0 +1,37 @@
+:root {
+    --icon-color: rgba(6, 140, 11, 1);;
+}
+
+.gap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    flex-direction: column;
+}
+
+#info-gratuidade {
+    margin-top: 48px;
+    align-items: center;
+}
+
+
+#info-usuario-refeicao span {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.refeicao-color {
+    color: var(--icon-color);
+}
+
+#tipo-refeicao-text {
+
+    font-size: 40px;
+    font-weight: 400;
+}
+#buttons {
+    margin-top: 48px;
+    display: flex;
+    flex-direction: row;
+}

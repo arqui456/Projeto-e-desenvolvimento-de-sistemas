@@ -1,0 +1,55 @@
+:root {
+    --primary: #4B84D9;
+    // --primary-focus: #0039cb;
+  
+    --secondary: #16123F;
+    --secondary-focus: #1c313a;
+  
+    --danger: #d32f2f;
+    --text-disabled: #9e9e9e;
+
+    --white-gray:  #E8E6E6;
+    --sidebar-menu: #F8F8F8;
+    --sidebar-menu-focus: rgba(214, 214, 214, 0.74);
+  
+    --white: #ffffff;
+    --black: #000000;
+    --green: rgba(6, 140, 11, 1);
+    --warn: #FFCC00;
+
+    --default: #cecece;
+
+
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html {
+    @media (max-width: 1080px) {
+      font-size: 93.75%;
+    }
+    @media (max-width: 720px) {
+      font-size: 87.5%;
+    }
+  }
+
+  body, input, textarea, button {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
