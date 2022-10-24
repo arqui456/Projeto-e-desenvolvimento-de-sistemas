@@ -1,4 +1,8 @@
+const sequelize = require('../database');
 const Cliente = require('../models/Cliente');
+const fs = require('fs');
+const { parse } = require('csv-parse');
+
 
 module.exports = {
   async store(req, res) {
@@ -37,14 +41,68 @@ module.exports = {
 
   async bulkUpsert(req, res) {
     try {
-      const clientes = [];
-      Cliente.bulkCreate(clientes, {
-        fields: ['ativo', 'qtd_refeicoes_gratis'],
-        updateOnDuplicate: ['ativo', 'qtd_refeicoes_gratis']
-      });
+      const { file } = req;
+      const isInvalid = validateFile(file, res);
+      if (isInvalid) { return; }
+
+      const couldNotUpdate = [];
+
+      fs.createReadStream(file.path).pipe(parse({columns: true}, async (err, records) => {
+        if (!records || (records.length > 0 && !validateFields(records[0]))) { 
+          res.status(500).json({error: 'O nome de alguma coluna está fora do padrao.'});
+          return;
+        }
+        const clientes = getValidClients(records);
+
+        fs.unlink(file.path,(err) => {if (err) { console.error(err)}});
+        
+        await Cliente.bulkCreate(clientes, {
+          updateOnDuplicate: ['nome', 'ativo', 'qtd_refeicoes_gratis'],
+        });
+        
+        res.status(200).json({couldNotUpdate});
+      }));
+      
     } catch (err) {
       console.error(err);
       return res.status(500).json({error: 'Ocorreu um erro ao atualizar as informacoes dos clientes.'});
     }
   }
+}
+
+
+function validateFile(file, res) {
+  if (!file) { 
+    return res.status(415).json({error: 'Um arquivo csv eh esperado.'});
+  }
+  if (file.mimetype != 'text/csv') { 
+    return res.status(415).json({error: 'O arquivo enviado deve ser um csv.'});
+  }
+  return null;
+}
+
+
+function validateFields(cliente) {
+  const { nome, matricula, cpf, qtd_refeicoes_gratis, ativo } = cliente;
+  return nome && matricula && cpf && qtd_refeicoes_gratis && ativo;
+}
+
+
+function getValidClients(clientes) {
+  return clientes.filter(cliente => {
+    if (!isClienteValid(cliente)) {
+      couldNotUpdate.push(cliente);
+      return false;
+    }
+    return true;
+  });
+}
+
+
+function isClienteValid(cliente) {
+  const { cpf, qtd_refeicoes_gratis, ativo } = cliente;
+  const cpf_regex = /^\d{3}\.\d{3}\.\d{3}-\d{2}|\d{11}$/;
+  const isPositive = !isNaN(qtd_refeicoes_gratis) && parseInt(qtd_refeicoes_gratis) >= 0;
+  const isBool = !isNaN(ativo) && (ativo == 0 || ativo == 1);
+  return cpf.match(cpf_regex) && isPositive && isBool;
 }

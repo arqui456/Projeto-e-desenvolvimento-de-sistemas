@@ -17,12 +17,12 @@ module.exports = {
       matricula: {
         type: Sequelize.STRING,
         allowNull: false,
-        unique: true,
+        unique: 'actions_unique',
       },
       cpf: {
         type: Sequelize.STRING,
         allowNull: false,
-        unique: true,
+        unique: 'actions_unique',
       },
       qtd_refeicoes_gratis: {
         type: Sequelize.INTEGER,
@@ -42,6 +42,12 @@ module.exports = {
         type: Sequelize.DATE,
         allowNull: false,
       },
+    },{
+      uniqueKeys: {
+        actions_unique: {
+          fields: ['cpf', 'matricula']
+        }
+      }
     });
   },
 
