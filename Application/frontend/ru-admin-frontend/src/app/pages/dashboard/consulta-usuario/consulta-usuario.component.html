@@ -1,4 +1,5 @@
 <app-container-conteudo [class]="'controle-padding d-flex'">
+    <app-logo></app-logo>
     <h2 id="title">Consultar Usuário</h2>
     <section class="gap">
         <!-- tamanho máximo pendente, verificar com o danilo -->
@@ -9,6 +10,7 @@
         >
         </app-input>
         <app-button
+            (click)="queryUserEvent()"
             [btnLabel]="'validar usuário'"
             [btnSize]="'lg'"
             [btnColor]="'primary'"
@@ -16,4 +18,4 @@
     </section>
 </app-container-conteudo>
 
-<app-valida-usuario *ngIf="false"></app-valida-usuario>
+<app-valida-usuario *ngIf="validatedUsed"></app-valida-usuario>

@@ -1,5 +1,6 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { SidebarItem } from 'src/app/models/sidebar-item.model';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -14,7 +15,7 @@ export class SidebarComponent implements OnInit {
 
   @ViewChild('sidebarMenu', { static: false }) sidebarMenu: ElementRef = new ElementRef('');
 
-  constructor() { }
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
     // this.sidebarMenu.nativeElement.style.visibility = 'hidden';
@@ -30,6 +31,10 @@ export class SidebarComponent implements OnInit {
     let displayStyle: string = (this.visualizaMenu) ? 'visible' : 'hidden';
     this.visualizaMenu = !this.visualizaMenu;
     // this.sidebarMenu.nativeElement.style.visibility = displayStyle;
+  }
+
+  logout() {
+    this.userService.logout();
   }
 
 }

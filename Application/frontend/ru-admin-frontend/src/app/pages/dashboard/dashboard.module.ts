@@ -6,6 +6,7 @@ import { LayoutModule } from 'src/app/layout/layout.module';
 import { ConsultaUsuarioComponent } from './consulta-usuario/consulta-usuario.component';
 import { ValidaUsuarioComponent } from './consulta-usuario/valida-usuario/valida-usuario.component';
 import { CpfPipe } from 'src/app/pipes/cpf.pipe';
+import { AppRoutingModule } from 'src/app/app-routing.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { CpfPipe } from 'src/app/pipes/cpf.pipe';
   ],
   imports: [
     CommonModule,
-    LayoutModule
+    LayoutModule,
+    AppRoutingModule
   ],
   exports: [
     PaginaInicialComponent,

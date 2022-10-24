@@ -5,6 +5,7 @@ import { LayoutModule } from '../layout/layout.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PaginaInicialComponent } from './dashboard/pagina-inicial/pagina-inicial.component';
 import { DashboardModule } from './dashboard/dashboard.module';
+import { RouterModule } from '@angular/router';
 // import { CpfPipe } from '../pipes/cpf.pipe';
 
 
@@ -18,6 +19,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
     CommonModule,
     LayoutModule,
     DashboardModule,
+    RouterModule,
     // CpfPipe
   ],
   exports: [

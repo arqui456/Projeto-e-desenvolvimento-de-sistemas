@@ -9,15 +9,23 @@
               </label>
               <div #sidebarMenu class="sidebar-menu">
                 <ul id="cards-list">
-                    <li class="item-card" *ngFor="let item of itensList">
+                    <li class="item-card" *ngFor="let item of itensList" 
+                    routerLink ='{{item.linkTo}}'>
                         <app-icon [icon]="item.icone" class="item-icon"></app-icon>
-                        {{ item.titulo }}
+                        <span class="menu-icon"> {{item.titulo}}</span>
                     </li>
                 </ul>
             </div>
         </div>
     </div>
-    <span id="titulo">RU+</span>   
+    <span id="titulo">RU+</span>
+    <span></span>
+    <img>
+    <span class="spacer"></span>
+    <button (click) = logout() mat-icon-button class="button">
+        <mat-icon class="">logout</mat-icon>
+    </button>
+
 </div>
 
 

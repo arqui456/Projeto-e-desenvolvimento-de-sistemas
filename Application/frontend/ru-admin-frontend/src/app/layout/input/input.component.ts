@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-input',
@@ -7,12 +8,14 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class InputComponent implements OnInit {
 
+  emailFormControl = new FormControl('', [Validators.required, Validators.email]);
+
   @Input() placeholder: string = '';
   @Input() mostraErro: boolean = false;
   @Input() msgErro: string = 'Campo obrigatório!';
   @Input() tipoEntrada: string = 'text';
   @Input() tamanhoMaximo: number = 40;
-  @Input() isDisabled: boolean = false;
+  @Input() isDisabled: boolean = true;
   @Input() id: string = '';
   @Input() loading: boolean = false;
   @Input() overflowEllipsis: boolean = false;
@@ -21,8 +24,6 @@ export class InputComponent implements OnInit {
   @Output() inputValueChange: EventEmitter<string> = new EventEmitter<string>();
 
   onChangeHistory: string = '';
-
-
 
   constructor() { }
 

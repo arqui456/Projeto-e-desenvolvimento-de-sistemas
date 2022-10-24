@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { UsuarioRefeicao } from 'src/app/models/usuario-refeicao.model';
+import { QueryUserService } from 'src/app/services/query-user.service';
 
 @Component({
   selector: 'app-valida-usuario',

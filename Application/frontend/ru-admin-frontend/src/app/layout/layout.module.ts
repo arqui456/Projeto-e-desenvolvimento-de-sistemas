@@ -4,10 +4,11 @@ import { InputComponent } from './input/input.component';
 import { ButtonComponent } from './button/button.component';
 import { IconComponent } from './icon/icon.component';
 import { LogoComponent } from './logo/logo.component';
-import {MatIconModule} from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
 import { ContainerConteudoComponent } from './container-conteudo/container-conteudo.component';
 import { SidebarComponent } from './sidebar/sidebar.component'
-
+import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -21,7 +22,9 @@ import { SidebarComponent } from './sidebar/sidebar.component'
   ],
   imports: [
     CommonModule,
-    MatIconModule
+    MatIconModule,
+    RouterModule,
+    ReactiveFormsModule
   ],
   exports: [
     InputComponent,
