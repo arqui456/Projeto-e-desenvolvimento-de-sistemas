@@ -45,22 +45,21 @@ module.exports = {
       const isInvalid = validateFile(file, res);
       if (isInvalid) { return; }
 
-      const couldNotUpdate = [];
-
+      
       fs.createReadStream(file.path).pipe(parse({columns: true}, async (err, records) => {
         if (!records || (records.length > 0 && !validateFields(records[0]))) { 
           res.status(500).json({error: 'O nome de alguma coluna está fora do padrao.'});
           return;
         }
-        const clientes = getValidClients(records);
-
+        const {valid, invalid} = getValidClients(records);
+        
         fs.unlink(file.path,(err) => {if (err) { console.error(err)}});
         
-        await Cliente.bulkCreate(clientes, {
+        await Cliente.bulkCreate(valid, {
           updateOnDuplicate: ['nome', 'ativo', 'qtd_refeicoes_gratis'],
         });
         
-        res.status(200).json({couldNotUpdate});
+        res.status(200).json({couldNotUpdate: invalid});
       }));
       
     } catch (err) {
@@ -89,13 +88,15 @@ function validateFields(cliente) {
 
 
 function getValidClients(clientes) {
-  return clientes.filter(cliente => {
+  const invalid = [];
+  const valid = clientes.filter(cliente => {
     if (!isClienteValid(cliente)) {
-      couldNotUpdate.push(cliente);
+      invalid.push(cliente);
       return false;
     }
     return true;
   });
+  return {valid, invalid};
 }
 
 
