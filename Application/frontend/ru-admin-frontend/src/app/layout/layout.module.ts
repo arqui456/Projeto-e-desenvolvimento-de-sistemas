@@ -9,6 +9,7 @@ import { ContainerConteudoComponent } from './container-conteudo/container-conte
 import { SidebarComponent } from './sidebar/sidebar.component'
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     MatIconModule,
     RouterModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatInputModule
   ],
   exports: [
     InputComponent,
