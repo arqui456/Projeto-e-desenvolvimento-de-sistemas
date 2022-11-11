@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 export class ConsultaUsuarioComponent implements OnInit {
 
   validatedUsed: boolean = false;
+  cpfValue: string = "";
 
   constructor() { }
 
@@ -16,9 +17,17 @@ export class ConsultaUsuarioComponent implements OnInit {
     this.validatedUsed = false;
   }
 
+  cpfHandler(cpf: string) {
+    this.cpfValue = cpf;
+  }
+
   queryUserEvent() {
     this.validatedUsed = true;
     console.log(this.validatedUsed);
+
+    if(this.validatedUsed) {
+      
+    }
   }
 
 }
