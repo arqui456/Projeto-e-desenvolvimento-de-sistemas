@@ -1,32 +1,34 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { Observable, of , BehaviorSubject} from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { IUser } from '../models/IUser';
-const apiUrlUser = environment.apiUrl + "User";
+const apiUrlUser = environment.apiUrl + "/user";
+
+type UserCredentials = {
+  username: string,
+  senha: string
+}
 
 @Injectable({providedIn: 'root'})
 export class UserService {
 
-  constructor(private httpClient: HttpClient, 
-              private router: Router) {}
-  
-  login(user: IUser): Observable<any>{
-    /* return this.httpClient.post<any>(apiUrlUser + "/login", user).pipe(
+  constructor(private httpClient: HttpClient) {}
+
+  login(credentials: UserCredentials): Observable<any>{
+      return this.httpClient.post<any>(apiUrlUser + "/login", credentials).pipe(
       tap((response) =>{
-        if(!response.sucess) return;
-        localStorage.setItem('token', btoa(JSON.stringify(response["token"])));
-        localStorage.setItem('user', btoa(JSON.stringify(response["user"])));
-        this.router.navigate(['dashboard']);
-      }));*/
-      return this.mockUserLogin(user).pipe(tap((response) =>{
+        if(!response.auth) return;
+        localStorage.setItem('ru+_token', response["token"]);
+        //localStorage.setItem('user', btoa(JSON.stringify(response["user"])));
+      }));
+      /*return this.mockUserLogin(user).pipe(tap((response) =>{
         if(!response.sucess) return;
         localStorage.setItem('token', btoa(JSON.stringify("Token")));
         localStorage.setItem('user', btoa(JSON.stringify(user)));
         this.router.navigate(['dashboard']);
-      }));
+      }));*/
   }
 
   private mockUserLogin(user: IUser): Observable<any> {
@@ -43,30 +45,29 @@ export class UserService {
   }
 
   logout() {
-    localStorage.clear();
-    this.router.navigate(['login']);
+    localStorage.removeItem('ru+_token');
   }
 
   get getLoggedInUser(): IUser {
-    return localStorage.getItem('user')
-    ? JSON.parse(localStorage.getItem('user' ) || '{}')
+    return localStorage.getItem('ru+_token')
+    ? JSON.parse(localStorage.getItem('ru+_toke' ) || '{}')
     : null;
   }
 
   get getLoggedInUserId() : string {
-    return localStorage.getItem('user')
-    ? (JSON.parse(localStorage.getItem('user' ) || '{}') as IUser).id
+    return localStorage.getItem('ru+_token')
+    ? (JSON.parse(localStorage.getItem('ru+_token') || '{}') as IUser).id
     : "{}";
   }
 
   get getLoggedInUserToken() : string {
-    return localStorage.getItem('token')
-    ? JSON.parse(localStorage.getItem('user' ) || '{}')
+    return localStorage.getItem('ru+_token')
+    ? JSON.parse(localStorage.getItem('ru+_token') || '{}')
     : "{}";
   }
 
   get getLoggedIn(): Observable<boolean> {
-    return of(localStorage.getItem('token') ? true : false);
+    return of(localStorage.getItem('ru+_token') ? true : false);
   }
   
 }

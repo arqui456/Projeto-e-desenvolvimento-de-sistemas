@@ -21,6 +21,7 @@ const logger = log({ console: true, file: false, label: config.name });
 
 app.use(express.json());
 app.use(cors());
+
 app.use("/api-documentation", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 app.use(ExpressAPILogMiddleware(logger, { request: true }));

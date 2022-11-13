@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { QueryClientService } from 'src/app/services/query-client.service';
 
 @Component({
   selector: 'app-consulta-usuario',
@@ -11,7 +12,7 @@ export class ConsultaUsuarioComponent implements OnInit {
   validatedUsed: boolean = false;
   cpfValue: string = "";
 
-  constructor() { }
+  constructor(private router: Router, private clientService: QueryClientService) { }
 
   ngOnInit(): void {
     this.validatedUsed = false;
@@ -24,6 +25,10 @@ export class ConsultaUsuarioComponent implements OnInit {
   queryUserEvent() {
     this.validatedUsed = true;
     console.log(this.validatedUsed);
+    this.clientService.queryClient({ cpf: this.cpfValue})
+      .subscribe(data => {
+        console.log(data);
+    });
 
     if(this.validatedUsed) {
       

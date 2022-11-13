@@ -19,7 +19,7 @@ router.post('/user/login', UsuarioController.login);
 
 router.post('/cliente/update', verifyJWT, onlySuperUser, upload, ClienteController.bulkUpsert);
 
-router.get('/cliente', verifyJWT, ClienteController.getCliente);
+router.get('/cliente', verifyJWT, onlySuperUser, ClienteController.getCliente);
 
 router.post('/cliente', verifyJWT, onlySuperUser, ClienteController.store);
 
