@@ -1,0 +1,15 @@
+#title {
+  margin-bottom: 32px;
+}
+
+.gap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  flex-direction: column;
+}
+form input{
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+}

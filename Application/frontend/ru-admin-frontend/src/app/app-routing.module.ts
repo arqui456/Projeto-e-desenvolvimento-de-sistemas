@@ -5,6 +5,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { PaginaInicialComponent } from './pages/dashboard/pagina-inicial/pagina-inicial.component';
 import { ConsultaUsuarioComponent } from './pages/dashboard/consulta-usuario/consulta-usuario.component';
 import { ValidaUsuarioComponent } from './pages/dashboard/consulta-usuario/valida-usuario/valida-usuario.component';
+import { EnviarBaseComponent } from './pages/dashboard/enviar-base/enviar-base.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -13,6 +14,8 @@ const routes: Routes = [
   { path: 'dashboard/pagina-inicial', component: PaginaInicialComponent}, 
   { path: 'dashboard/consultar-usuario', component: ConsultaUsuarioComponent},
   { path: 'dashboard/consultar-usuario/valida-usuario', component:  ValidaUsuarioComponent},
+  { path: 'dashboard/enviar-base', component:  EnviarBaseComponent},
+
 ];
 
 @NgModule({

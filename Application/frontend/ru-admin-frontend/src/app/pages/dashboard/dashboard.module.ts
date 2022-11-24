@@ -7,6 +7,10 @@ import { ConsultaUsuarioComponent } from './consulta-usuario/consulta-usuario.co
 import { ValidaUsuarioComponent } from './consulta-usuario/valida-usuario/valida-usuario.component';
 import { CpfPipe } from 'src/app/pipes/cpf.pipe';
 import { AppRoutingModule } from 'src/app/app-routing.module';
+import { EnviarBaseComponent } from './enviar-base/enviar-base.component';
+import {MatButtonModule} from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -14,12 +18,16 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
     DashboardComponent,
     ConsultaUsuarioComponent,
     ValidaUsuarioComponent,
-    CpfPipe
+    CpfPipe,
+    EnviarBaseComponent
   ],
   imports: [
     CommonModule,
     LayoutModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    FormsModule
   ],
   exports: [
     PaginaInicialComponent,

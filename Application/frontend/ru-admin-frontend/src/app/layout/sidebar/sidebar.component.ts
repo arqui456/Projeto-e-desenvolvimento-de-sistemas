@@ -29,7 +29,6 @@ export class SidebarComponent implements OnInit {
   }
 
   controleVisualizacaoMenu(): void {
-    console.log('oi')
     let displayStyle: string = (this.visualizaMenu) ? 'visible' : 'hidden';
     this.visualizaMenu = !this.visualizaMenu;
     // this.sidebarMenu.nativeElement.style.visibility = displayStyle;

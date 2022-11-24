@@ -18,7 +18,7 @@ export class AppComponent {
     {titulo: 'Consultar Usuário', icone: 'search', linkTo: 'dashboard/consultar-usuario'},
     {titulo: 'Gerar Relatório', icone: 'insert_drive_file', linkTo: 'dashboard'},
     {titulo: 'Gerenciar Funcionários', icone: 'people', linkTo: 'dashboard'}, 
-    {titulo: 'Enviar Base de Dados', icone: 'cloud_upload', linkTo: 'dashboard'},
+    {titulo: 'Enviar Base de Dados', icone: 'cloud_upload', linkTo: 'dashboard/enviar-base'},
   ];
 
   title = 'Restaurante Universitário - UFAL';

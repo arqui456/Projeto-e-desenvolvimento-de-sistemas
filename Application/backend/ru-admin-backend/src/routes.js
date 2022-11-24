@@ -17,11 +17,11 @@ router.get('/', (req, res) => {
 
 router.post('/user/login', UsuarioController.login);
 
-router.post('/cliente/update', verifyJWT, onlySuperUser, upload, ClienteController.bulkUpsert);
+router.post('/cliente/update', verifyJWT, onlySuperUser, upload, ClienteController.bulkUpsert);//enviar db
 
-router.get('/cliente', verifyJWT, onlySuperUser, ClienteController.getCliente);
+router.get('/cliente', verifyJWT, onlySuperUser, ClienteController.getCliente);//teste
 
-router.post('/cliente', verifyJWT, onlySuperUser, ClienteController.store);
+router.post('/cliente', verifyJWT, onlySuperUser, ClienteController.store);//teste
 
 router.post('/refeicao/:cliente_id/registrar-refeicao', verifyJWT, ClienteRefeicaoController.registerMeal);
 

@@ -16,6 +16,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { LayoutModule } from './layout/layout.module';
 import { PagesModule } from './pages/pages.module';
 
+import {MatButtonModule} from'@angular/material/button';
+
 
 
 @NgModule({
@@ -35,7 +37,10 @@ import { PagesModule } from './pages/pages.module';
     MatFormFieldModule,
     MatSnackBarModule,
     LayoutModule,
-    PagesModule
+    PagesModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
