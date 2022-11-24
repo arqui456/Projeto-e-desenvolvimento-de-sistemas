@@ -16,7 +16,7 @@ export class AppComponent {
   sidebarList: SidebarItem[] = [
     {titulo: 'Página Inicial', icone: 'home', linkTo: 'dashboard/pagina-inicial'},
     {titulo: 'Consultar Usuário', icone: 'search', linkTo: 'dashboard/consultar-usuario'},
-    {titulo: 'Gerar Relatório', icone: 'insert_drive_file', linkTo: 'dashboard'},
+    {titulo: 'Gerar Relatório', icone: 'insert_drive_file', linkTo: 'dashboard/gerar-relatorio'},
     {titulo: 'Gerenciar Funcionários', icone: 'people', linkTo: 'dashboard'}, 
     {titulo: 'Enviar Base de Dados', icone: 'cloud_upload', linkTo: 'dashboard/enviar-base'},
   ];

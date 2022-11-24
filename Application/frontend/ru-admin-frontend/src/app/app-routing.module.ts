@@ -6,6 +6,7 @@ import { PaginaInicialComponent } from './pages/dashboard/pagina-inicial/pagina-
 import { ConsultaUsuarioComponent } from './pages/dashboard/consulta-usuario/consulta-usuario.component';
 import { ValidaUsuarioComponent } from './pages/dashboard/consulta-usuario/valida-usuario/valida-usuario.component';
 import { EnviarBaseComponent } from './pages/dashboard/enviar-base/enviar-base.component';
+import { GerarRelatorioComponent } from './pages/dashboard/gerar-relatorio/gerar-relatorio.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'dashboard/consultar-usuario', component: ConsultaUsuarioComponent},
   { path: 'dashboard/consultar-usuario/valida-usuario', component:  ValidaUsuarioComponent},
   { path: 'dashboard/enviar-base', component:  EnviarBaseComponent},
+  { path: 'dashboard/gerar-relatorio', component:  GerarRelatorioComponent},
 
 ];
 

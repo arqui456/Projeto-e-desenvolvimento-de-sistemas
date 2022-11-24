@@ -17,6 +17,7 @@ import { LayoutModule } from './layout/layout.module';
 import { PagesModule } from './pages/pages.module';
 
 import {MatButtonModule} from'@angular/material/button';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 
 
@@ -40,7 +41,8 @@ import {MatButtonModule} from'@angular/material/button';
     PagesModule,
     MatButtonModule,
     MatFormFieldModule,
-    FormsModule
+    FormsModule,
+    MatDatepickerModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,9 +1,8 @@
 <app-container-conteudo [class]="'controle-padding d-flex'">
-    <div class="boas-vindas mb">
-        <app-logo></app-logo>
-        <p class="text">Olá, o que você gostaria de fazer?</p>
-        
-    </div>
+  <div class="boas-vindas mb">
+    <app-logo></app-logo>
+    <p class="text">Olá, o que você gostaria de fazer?</p>
+  </div>
   <app-button
     [btnLabel]="'GERAR RELATÓRIO DIÁRIO'"
     [btnClass]="'button'"
@@ -26,19 +25,19 @@
     class="mb"
   ></app-button>
 
-  <div class="aluno-search mb" >
+  <div class="aluno-search mb">
     <app-input [placeholder]="'Aluno'" [inputSize]="'md'"> </app-input>
     <app-button
-        [btnLabel]="'BUSCAR'"
-        [btnClass]="'outline'"
-        [btnIcon]="true"
-        [btnIconName]="'search'"
-        [btnIconPosition]="'left'"
-        [btnSize]="'sm'"
-        [btnColor]="'primary'"
+      [btnLabel]="'BUSCAR'"
+      [btnClass]="'outline'"
+      [btnIcon]="true"
+      [btnIconName]="'search'"
+      [btnIconPosition]="'left'"
+      [btnSize]="'sm'"
+      [btnColor]="'primary'"
     ></app-button>
   </div>
-  
+
   <app-button
     [btnLabel]="'GERENCIAR FUNCIONÁRIOS'"
     [btnClass]="'button'"

@@ -11,6 +11,7 @@ import { EnviarBaseComponent } from './enviar-base/enviar-base.component';
 import {MatButtonModule} from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
+import { GerarRelatorioComponent } from './gerar-relatorio/gerar-relatorio.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { FormsModule } from '@angular/forms';
     ConsultaUsuarioComponent,
     ValidaUsuarioComponent,
     CpfPipe,
-    EnviarBaseComponent
+    EnviarBaseComponent,
+    GerarRelatorioComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +29,7 @@ import { FormsModule } from '@angular/forms';
     AppRoutingModule,
     MatButtonModule,
     MatFormFieldModule,
-    FormsModule
+    FormsModule,
   ],
   exports: [
     PaginaInicialComponent,

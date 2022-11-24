@@ -3,15 +3,23 @@
   <h2 id="title">Enviar base de dados</h2>
   <section class="gap">
     <form action="">
-      <input type="file" class="file-upload" accept=".csv" (onchange)="setarBase('variable')">
+      <input
+        type="file"
+        class="file-upload"
+        accept=".csv"
+        (onchange)="setarBase('variable')"
+      />
       <!-- tamanho máximo pendente, verificar com o danilo -->
     </form>
-    <app-button [btnLabel]="'enviar base de dados'" [btnClass]="'button'" [btnIcon]="true" [btnIconName]="'send'"
-      [btnIconPosition]="'left'" [btnSize]="'lg'" [btnColor]="'primary'" (click)='enviarBase()'></app-button>
-    <button mat-raised-button (click)="enviarBase()">
-      Salvar <em class="material-icons v-middle" appRed>
-        send
-      </em>
-    </button>
+    <app-button
+      [btnLabel]="'enviar base de dados'"
+      [btnClass]="'button'"
+      [btnIcon]="true"
+      [btnIconName]="'send'"
+      [btnIconPosition]="'left'"
+      [btnSize]="'lg'"
+      [btnColor]="'primary'"
+      (click)="enviarBase()"
+    ></app-button>
   </section>
 </app-container-conteudo>

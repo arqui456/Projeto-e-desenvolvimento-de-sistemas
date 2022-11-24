@@ -27,6 +27,11 @@
     padding: 0;
     box-sizing: border-box;
   }
+
+  .primary {
+    background-color: var(--primary);
+    color: var(--white);
+  }
   
   html {
     @media (max-width: 1080px) {
