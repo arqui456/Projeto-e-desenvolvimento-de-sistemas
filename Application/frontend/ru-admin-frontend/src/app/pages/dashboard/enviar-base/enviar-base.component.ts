@@ -6,22 +6,32 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./enviar-base.component.scss']
 })
 export class EnviarBaseComponent implements OnInit {
-  archive:any
-  constructor() { }
+  fileName:string
+  fileToUpload: File | null = null;
+  constructor() {
+    this.fileName = ''
+   }
 
   ngOnInit(): void {
   }
 
-  enviarBase(){
-    console.log('funcionou')
+  sendDataBase(){
+    console.log(this.fileToUpload == null? "nenhum arquivo":this.fileToUpload.name)
   }
-  setarBase(archive:any){
-    this.archive = archive
-    
-    console.log(archive)
-  }
-  doFileInput(){
-    console.log('funcionou 2')
-  }
+  onFileSelected(event:any) {
+    this.fileToUpload = event.target.files[0];
+    if (this.fileToUpload != null) {
+
+        this.fileName = this.fileToUpload.name;
+
+        //const formData = new FormData();
+
+        //formData.append("thumbnail", file);
+
+        //const upload$ = this.http.post("/api/thumbnail-upload", formData);
+
+        //upload$.subscribe();
+    }
+}
 
 }

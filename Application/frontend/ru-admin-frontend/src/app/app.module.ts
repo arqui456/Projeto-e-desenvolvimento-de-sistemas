@@ -17,7 +17,8 @@ import { LayoutModule } from './layout/layout.module';
 import { PagesModule } from './pages/pages.module';
 
 import {MatButtonModule} from'@angular/material/button';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import {DateRange, MatDatepickerModule, MatDateRangePicker} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 
@@ -42,7 +43,9 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     MatButtonModule,
     MatFormFieldModule,
     FormsModule,
-    MatDatepickerModule,
+    MatDatepickerModule,  
+    MatNativeDateModule,
+    MatDatepickerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

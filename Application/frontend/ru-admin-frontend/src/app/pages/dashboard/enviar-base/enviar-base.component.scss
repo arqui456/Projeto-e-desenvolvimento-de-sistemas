@@ -15,3 +15,17 @@ form input{
   align-items: center;
   justify-content: center;
 }
+
+.primary {
+  background-color: var(--primary);
+  color: var(--white);
+}
+.file-input {
+  display: none;
+}
+
+.file-upload{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -3,14 +3,19 @@
   <h2 id="title">Enviar base de dados</h2>
   <section class="gap">
     <form action="">
-      <input
-        type="file"
-        class="file-upload"
-        accept=".csv"
-        (onchange)="setarBase('variable')"
-      />
       <!-- tamanho máximo pendente, verificar com o danilo -->
     </form>
+    <input type="file" class="file-input" accept=".csv"
+       (change)="onFileSelected($event)" #fileUpload>
+       <div class="file-upload">
+
+        {{fileName || "Nenhum arquivo selecionado."}}
+     
+         <button mat-mini-fab class="upload-btn primary" 
+           (click)="fileUpload.click()">
+             <em class="material-icons">attach_file</em>
+         </button>
+     </div>
     <app-button
       [btnLabel]="'enviar base de dados'"
       [btnClass]="'button'"
@@ -19,7 +24,10 @@
       [btnIconPosition]="'left'"
       [btnSize]="'lg'"
       [btnColor]="'primary'"
-      (click)="enviarBase()"
+      (click)="sendDataBase()"
     ></app-button>
+    
+
+
   </section>
 </app-container-conteudo>

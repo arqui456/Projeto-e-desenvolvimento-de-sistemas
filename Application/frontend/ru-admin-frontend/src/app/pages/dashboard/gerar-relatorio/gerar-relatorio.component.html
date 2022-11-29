@@ -2,6 +2,15 @@
   <app-logo></app-logo>
   <h2 id="title">Gerar relatórios</h2>
   <section class="gap"></section>
+  <mat-form-field appearance="fill" class="fillSpace">
+    <mat-label>Datas do relatório</mat-label>
+    <mat-date-range-input [rangePicker]="picker">
+      <input matStartDate placeholder="Start date">
+      <input matEndDate placeholder="End date">
+    </mat-date-range-input>
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-date-range-picker #picker></mat-date-range-picker>
+  </mat-form-field>
   <app-button
     [btnLabel]="'GERAR RELATÓRIO DIÁRIO'"
     [btnClass]="'button'"
@@ -14,6 +23,7 @@
     (click)="gerarRelatorioDiario()"
   ></app-button>
 
+
   <app-button
     [btnLabel]="'GERAR RELATÓRIO DE ALUNOS'"
     [btnClass]="'button'"
@@ -25,4 +35,5 @@
     class="mt"
     (click)="gerarRelatorioAlunos()"
   ></app-button>
+  
 </app-container-conteudo>

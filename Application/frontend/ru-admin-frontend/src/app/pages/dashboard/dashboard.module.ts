@@ -1,3 +1,5 @@
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PaginaInicialComponent } from './pagina-inicial/pagina-inicial.component';
@@ -10,7 +12,7 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
 import { EnviarBaseComponent } from './enviar-base/enviar-base.component';
 import {MatButtonModule} from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GerarRelatorioComponent } from './gerar-relatorio/gerar-relatorio.component';
 
 @NgModule({
@@ -30,6 +32,10 @@ import { GerarRelatorioComponent } from './gerar-relatorio/gerar-relatorio.compo
     MatButtonModule,
     MatFormFieldModule,
     FormsModule,
+    MatDatepickerModule,  
+    MatNativeDateModule,
+    MatDatepickerModule,
+    ReactiveFormsModule
   ],
   exports: [
     PaginaInicialComponent,
