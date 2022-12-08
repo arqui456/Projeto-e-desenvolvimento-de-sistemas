@@ -1,3 +1,4 @@
+import { GerenciarFuncionariosComponent } from './pages/dashboard/gerenciar-funcionarios/gerenciar-funcionarios.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'dashboard/consultar-usuario/valida-usuario', component:  ValidaUsuarioComponent},
   { path: 'dashboard/enviar-base', component:  EnviarBaseComponent},
   { path: 'dashboard/gerar-relatorio', component:  GerarRelatorioComponent},
+  { path: 'dashboard/gerenciar-funcionarios', component:  GerenciarFuncionariosComponent},
 
 ];
 

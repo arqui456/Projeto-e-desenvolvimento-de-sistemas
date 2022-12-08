@@ -16,9 +16,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { LayoutModule } from './layout/layout.module';
 import { PagesModule } from './pages/pages.module';
 
-import {MatButtonModule} from'@angular/material/button';
-import {DateRange, MatDatepickerModule, MatDateRangePicker} from '@angular/material/datepicker';
+import { MatButtonModule } from '@angular/material/button';
+import { DateRange, MatDatepickerModule, MatDateRangePicker } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatInputModule } from '@angular/material/input';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 
 
@@ -29,23 +33,24 @@ import { MatNativeDateModule } from '@angular/material/core';
     ConsultComponent
   ],
   imports: [
-    BrowserModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatToolbarModule,
-    MatFormFieldModule,
-    MatSnackBarModule,
-    LayoutModule,
-    PagesModule,
-    MatButtonModule,
-    MatFormFieldModule,
+    BrowserModule,
     FormsModule,
-    MatDatepickerModule,  
+    HttpClientModule,
+    LayoutModule,
+    MatButtonModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatInputModule,
     MatNativeDateModule,
-    MatDatepickerModule
+    MatPaginatorModule,
+    MatSnackBarModule,
+    MatSortModule,
+    MatTableModule,
+    MatToolbarModule,
+    PagesModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

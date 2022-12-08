@@ -1,3 +1,4 @@
+import { DatabaseService } from './../../../services/database.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,21 +9,27 @@ import { Component, OnInit } from '@angular/core';
 export class EnviarBaseComponent implements OnInit {
   fileName:string
   fileToUpload: File | null = null;
-  constructor() {
+  constructor(private databaseService:DatabaseService) {
     this.fileName = ''
-   }
+  }
 
   ngOnInit(): void {
   }
 
   sendDataBase(){
     console.log(this.fileToUpload == null? "nenhum arquivo":this.fileToUpload.name)
+    if(this.fileToUpload != null){
+      this.databaseService.sendCsvDatabase(this.fileToUpload);
+      //chamar o service e enviar o arquivo
+    }
   }
   onFileSelected(event:any) {
     this.fileToUpload = event.target.files[0];
     if (this.fileToUpload != null) {
 
         this.fileName = this.fileToUpload.name;
+        console.log(this.fileToUpload.name)
+        console.log(this.fileToUpload)
 
         //const formData = new FormData();
 

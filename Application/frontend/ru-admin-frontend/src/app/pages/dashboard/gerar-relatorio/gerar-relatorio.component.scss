@@ -5,3 +5,23 @@
   display: flex;
   flex-direction: row;
 }
+
+.mat-form-field-type-mat-date-range-input .mat-form-field-infix {
+  width: 300;
+}
+
+div {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  
+}
+
+.md-icon-button + .md-datepicker-input-container {
+  float: left;
+  margin-top:7px;
+}
+
+.fw{
+  width: 350px;
+}

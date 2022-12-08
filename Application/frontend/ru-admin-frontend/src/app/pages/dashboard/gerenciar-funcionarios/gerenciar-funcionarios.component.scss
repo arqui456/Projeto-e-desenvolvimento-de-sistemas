@@ -1,0 +1,27 @@
+.center{
+  margin-top: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.mat-table {
+  overflow-x: scroll;
+  display: table;
+  width: 100%;
+}
+div{
+  margin: 0px 40% 0px 40%;
+}
+table{
+  width: 30%;
+}
+.edit{
+  margin-right: 10px;
+}
+.edit > em{
+color: rgb(205, 219, 9);
+}
+.delete > em{
+  color: rgb(207, 53, 53);
+}

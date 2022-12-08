@@ -1,4 +1,5 @@
-import { MatNativeDateModule } from '@angular/material/core';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -14,6 +15,10 @@ import {MatButtonModule} from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GerarRelatorioComponent } from './gerar-relatorio/gerar-relatorio.component';
+import { MatInputModule } from '@angular/material/input';
+import { GerenciarFuncionariosComponent } from './gerenciar-funcionarios/gerenciar-funcionarios.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -23,7 +28,8 @@ import { GerarRelatorioComponent } from './gerar-relatorio/gerar-relatorio.compo
     ValidaUsuarioComponent,
     CpfPipe,
     EnviarBaseComponent,
-    GerarRelatorioComponent
+    GerarRelatorioComponent,
+    GerenciarFuncionariosComponent
   ],
   imports: [
     CommonModule,
@@ -35,13 +41,20 @@ import { GerarRelatorioComponent } from './gerar-relatorio/gerar-relatorio.compo
     MatDatepickerModule,  
     MatNativeDateModule,
     MatDatepickerModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatInputModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   exports: [
     PaginaInicialComponent,
     DashboardComponent,
     ConsultaUsuarioComponent,
     // CpfPipe
+  ],
+  providers:[
+    { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' }
   ]
 })
 export class DashboardModule { }
