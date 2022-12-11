@@ -1,0 +1,29 @@
+<mat-card class="main-card">
+  <mat-card-title>
+    Editar funcionário
+  </mat-card-title>
+  <form action="">
+    <mat-form-field>
+      <input matInput placeholder="nome" [(ngModel)]="funcionario.nome" name="nome">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="email" [(ngModel)]="funcionario.email" name="email">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="cpf" [(ngModel)]="funcionario.cpf" name="cpf">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="senha" [(ngModel)]="funcionario.senha" name="senha">
+    </mat-form-field>
+  </form>
+  <div>
+    <button mat-raised-button (click)="editarFuncionario()" color="primary">
+      Salvar
+    </button>
+
+    <button mat-raised-button (click)="cancel()" color="warn">
+      Cancelar
+    </button>
+  </div>
+
+</mat-card>

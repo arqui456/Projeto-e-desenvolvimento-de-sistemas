@@ -23,6 +23,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { CriarFuncionarioComponent } from './gerenciar-funcionarios/criar-funcionario/criar-funcionario.component';
 import { MatCardModule } from '@angular/material/card';
 import { DeletarFuncionarioComponent } from './gerenciar-funcionarios/deletar-funcionario/deletar-funcionario.component';
+import { EditarFuncionarioComponent } from './gerenciar-funcionarios/editar-funcionario/editar-funcionario.component';
 @NgModule({
   declarations: [
     PaginaInicialComponent,
@@ -34,7 +35,8 @@ import { DeletarFuncionarioComponent } from './gerenciar-funcionarios/deletar-fu
     GerarRelatorioComponent,
     GerenciarFuncionariosComponent,
     CriarFuncionarioComponent,
-    DeletarFuncionarioComponent
+    DeletarFuncionarioComponent,
+    EditarFuncionarioComponent
   ],
   imports: [
     CommonModule,
