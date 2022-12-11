@@ -7,38 +7,33 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./enviar-base.component.scss']
 })
 export class EnviarBaseComponent implements OnInit {
-  fileName:string
+  fileName: string
   fileToUpload: File | null = null;
-  constructor(private databaseService:DatabaseService) {
+  constructor(private databaseService: DatabaseService) {
     this.fileName = ''
   }
 
   ngOnInit(): void {
   }
 
-  sendDataBase(){
-    console.log(this.fileToUpload == null? "nenhum arquivo":this.fileToUpload.name)
-    if(this.fileToUpload != null){
-      this.databaseService.sendCsvDatabase(this.fileToUpload);
-      //chamar o service e enviar o arquivo
+  sendDataBase() {
+    //console.log(this.fileToUpload == null ? "nenhum arquivo" : this.fileToUpload.name)
+    if (this.fileToUpload != null) {
+      this.databaseService.sendCsvDatabase(this.fileToUpload).subscribe((response)=>{
+        console.log(response)
+      })
+      //let response = this.databaseService.sendCsvDatabase(this.fileToUpload);
+      //console.log(response)
     }
   }
-  onFileSelected(event:any) {
+  onFileSelected(event: any) {
     this.fileToUpload = event.target.files[0];
     if (this.fileToUpload != null) {
 
-        this.fileName = this.fileToUpload.name;
-        console.log(this.fileToUpload.name)
-        console.log(this.fileToUpload)
-
-        //const formData = new FormData();
-
-        //formData.append("thumbnail", file);
-
-        //const upload$ = this.http.post("/api/thumbnail-upload", formData);
-
-        //upload$.subscribe();
+      this.fileName = this.fileToUpload.name;
+      //console.log(this.fileToUpload.name)
+      //console.log(this.fileToUpload)
     }
-}
+  }
 
 }

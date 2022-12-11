@@ -1,3 +1,4 @@
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -19,7 +20,9 @@ import { MatInputModule } from '@angular/material/input';
 import { GerenciarFuncionariosComponent } from './gerenciar-funcionarios/gerenciar-funcionarios.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
-
+import { CriarFuncionarioComponent } from './gerenciar-funcionarios/criar-funcionario/criar-funcionario.component';
+import { MatCardModule } from '@angular/material/card';
+import { DeletarFuncionarioComponent } from './gerenciar-funcionarios/deletar-funcionario/deletar-funcionario.component';
 @NgModule({
   declarations: [
     PaginaInicialComponent,
@@ -29,7 +32,9 @@ import { MatSortModule } from '@angular/material/sort';
     CpfPipe,
     EnviarBaseComponent,
     GerarRelatorioComponent,
-    GerenciarFuncionariosComponent
+    GerenciarFuncionariosComponent,
+    CriarFuncionarioComponent,
+    DeletarFuncionarioComponent
   ],
   imports: [
     CommonModule,
@@ -45,7 +50,9 @@ import { MatSortModule } from '@angular/material/sort';
     MatInputModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatSnackBarModule,
+    MatCardModule
   ],
   exports: [
     PaginaInicialComponent,

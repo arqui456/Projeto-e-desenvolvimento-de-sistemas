@@ -8,6 +8,8 @@ import { ConsultaUsuarioComponent } from './pages/dashboard/consulta-usuario/con
 import { ValidaUsuarioComponent } from './pages/dashboard/consulta-usuario/valida-usuario/valida-usuario.component';
 import { EnviarBaseComponent } from './pages/dashboard/enviar-base/enviar-base.component';
 import { GerarRelatorioComponent } from './pages/dashboard/gerar-relatorio/gerar-relatorio.component';
+import { CriarFuncionarioComponent } from './pages/dashboard/gerenciar-funcionarios/criar-funcionario/criar-funcionario.component';
+import { DeletarFuncionarioComponent } from './pages/dashboard/gerenciar-funcionarios/deletar-funcionario/deletar-funcionario.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -19,7 +21,8 @@ const routes: Routes = [
   { path: 'dashboard/enviar-base', component:  EnviarBaseComponent},
   { path: 'dashboard/gerar-relatorio', component:  GerarRelatorioComponent},
   { path: 'dashboard/gerenciar-funcionarios', component:  GerenciarFuncionariosComponent},
-
+  { path: 'dashboard/gerenciar-funcionarios/criar', component:  CriarFuncionarioComponent},
+  { path: 'dashboard/gerenciar-funcionarios/deletar/:funcionario_id', component:  DeletarFuncionarioComponent},
 ];
 
 @NgModule({
