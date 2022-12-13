@@ -41,7 +41,6 @@ module.exports = {
 
   async bulkUpsert(req, res) {
     try {
-      console.log(req.body)
       const { file } = req;
       const isInvalid = validateFile(file, res);
       if (isInvalid) { return; }
@@ -72,7 +71,6 @@ module.exports = {
 
 
 function validateFile(file, res) {
-  console.log(file)
   if (!file) { 
     return res.status(415).json({error: 'Um arquivo csv eh esperado.'});
   }

@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/internal/Observable';
 import { map } from 'rxjs/internal/operators/map';
 import { catchError, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-const apiUrlUser = environment.apiUrl + "/cliente/update";
+const endpoint = environment.apiUrl + "/cliente/update";
 @Injectable({
   providedIn: 'root'
 })
@@ -16,16 +16,14 @@ export class DatabaseService {
 
   sendCsvDatabase(csvFile:File): Observable<any>{
     const headers = {
-      'Content-Type': 'text/plain',
-      'Accept':'aplication/json',
       'Authorization': 'Bearer ' + localStorage.getItem('ru+_token')!
     }
-    let csv = new FormData();
-    csv.append(csvFile.name, csvFile);
+    const csv: FormData = new FormData();
+    csv.append("fileupload",csvFile, csvFile.name);
 
-    return this.http.post<any>(apiUrlUser,csv, {headers}).pipe(
+    return this.http.post<any>(endpoint, csv, {headers}).pipe(
       tap((response) => {
-        //console.log(response)
+        console.log("Tentando enviar o arquivo")
       }),
       catchError((e) => this.errorHandler(e)),
     )
