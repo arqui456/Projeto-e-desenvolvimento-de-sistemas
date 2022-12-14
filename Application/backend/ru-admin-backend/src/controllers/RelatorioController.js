@@ -150,6 +150,7 @@ async function getRefByTipo(startDate, endDate, tipo, pageNumber) {
   const {refeicao_id} = await Refeicao.findOne({where: {nome: tipo}});
   return await Cliente.findAll({
     limit: ITEMS_PER_PAGE,
+    subQuery: false,
     offset: pageNumber * ITEMS_PER_PAGE,
     where: {
       createdAt: {
