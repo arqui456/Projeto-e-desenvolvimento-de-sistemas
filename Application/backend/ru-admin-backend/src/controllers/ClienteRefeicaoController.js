@@ -1,7 +1,7 @@
 const ClienteRefeicao = require('../models/ClienteRefeicao');
 const Refeicao = require('../models/Refeicao');
 const Cliente = require("../models/Cliente");
-const { LIMIT_ALMOCO, ALMOCO, JANTAR } = require('../utils/constants');
+const { LIMIT_ALMOCO, ALMOCO, JANTAR, INITIAL_DATE } = require('../utils/constants');
 const { filterWithJustStart, filterWithStartEnd, filterWithJustEnd, association } = require("../utils/clienteRefeicaoHelper");
 const sequelize = require('sequelize');
 
@@ -9,7 +9,9 @@ const sequelize = require('sequelize');
 module.exports = {
   async getRefeicoes(req, res) {
     try {
-      const { startDate, endDate } = req.query;
+      let { startDate, endDate } = req.query;
+      startDate = startDate || INITIAL_DATE;
+      endDate = endDate || new Date();
       
       let refeicoes;
       if (startDate && endDate) {

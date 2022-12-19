@@ -21,7 +21,7 @@ module.exports = {
         process.env.SECRET_KEY,
         {expiresIn: 3600}
       );
-      res.json({auth: true, token});
+      res.json({auth: true, token, user});
     } catch (err) {
       console.error(err);
       return res.status(500).json({error: 'Ocorreu um erro ao fazer a autenticacao.'});

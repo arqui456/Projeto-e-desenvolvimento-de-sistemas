@@ -23,7 +23,7 @@ router.get('/cliente', verifyJWT, onlySuperUser, ClienteController.getCliente);
 
 router.post('/cliente', verifyJWT, onlySuperUser, ClienteController.store);
 
-router.post('/refeicao/:cliente_id/registrar-refeicao', verifyJWT, ClienteRefeicaoController.registerMeal);
+router.get('/refeicao/:cliente_id/registrar-refeicao', verifyJWT, ClienteRefeicaoController.registerMeal);
 
 router.get('/refeicao', verifyJWT, onlySuperUser, ClienteRefeicaoController.getRefeicoes);
 
