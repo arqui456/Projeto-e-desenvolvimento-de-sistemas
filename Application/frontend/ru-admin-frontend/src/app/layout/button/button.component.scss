@@ -52,6 +52,8 @@ button {
 
   .onlyIcon:hover, .onlyIcon:focus {
     filter: brightness(0.7);
+    cursor: pointer;
+    position: relative;
   }
   
   .primary {
@@ -80,6 +82,8 @@ button {
   .outline:hover,
   .outline:focus {
     filter: brightness(0.7);
+    position: relative;
+    cursor: pointer;
   }
   
 //   .box-shadow {
