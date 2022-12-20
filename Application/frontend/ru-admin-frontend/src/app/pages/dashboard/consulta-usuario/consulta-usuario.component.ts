@@ -1,7 +1,8 @@
 import { IClient } from './../../../models/IClient';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { QueryClientService } from 'src/app/services/query-client.service';
+import { ModalLoadingComponent } from 'src/app/layout/modal-loading/modal-loading.component';
 
 @Component({
   selector: 'app-consulta-usuario',
@@ -17,6 +18,9 @@ export class ConsultaUsuarioComponent implements OnInit {
     ativo: false
   };
 
+  @ViewChild('modalLoading', { static: false })
+  modalLoading: ModalLoadingComponent = new ModalLoadingComponent();
+
   constructor(private router: Router, public clientService: QueryClientService) { }
 
   ngOnInit(): void {
@@ -29,11 +33,11 @@ export class ConsultaUsuarioComponent implements OnInit {
 
   queryUserEvent() {
     this.clientService.setClient();
-    console.log('aaaaaaa')
+    this.modalLoading.abrir();
     this.clientService.queryClient({ cpf: this.cpfValue})
       .subscribe(data => {
         this.clientData = data;
-        console.log(data);
+        this.modalLoading.fechar();
     });
     this.clientService.setClientData(this.clientData);
   }
