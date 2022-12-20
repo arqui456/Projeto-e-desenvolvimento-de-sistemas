@@ -2,6 +2,8 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { GenReportService } from 'src/app/services/gen-report.service';
 import { MatStartDate } from '@angular/material/datepicker';
+import { buffer } from 'rxjs';
+import {saveAs} from "file-saver";
 
 @Component({
   selector: 'app-gerar-relatorio',
@@ -23,10 +25,6 @@ export class GerarRelatorioComponent implements OnInit {
       let end = this.range.value.end!.toString()
       let startFiltered = start.substring(8,15)
       let endFiltered = start.substring(8,15)
-      console.log(startFiltered)
-      console.log(endFiltered)
-      console.log(this.range.value.end)
-      console.log(this.range.value.start)
     }
   }
 
@@ -45,6 +43,14 @@ export class GerarRelatorioComponent implements OnInit {
 
     this.reportService.getDailyReport({
       startDate: startDate,
-      endDate: endDate}).subscribe(data => {})
+      endDate: endDate}).subscribe((buffer) => {
+        console.log(buffer);
+        const data: Blob = new Blob([buffer], {
+          type: "text/csv;charset=utf-8"
+        });
+        // you may improve this code to customize the name 
+        // of the export based on date or some other factors
+        saveAs(data, "products.csv");
+      });
   }
 }

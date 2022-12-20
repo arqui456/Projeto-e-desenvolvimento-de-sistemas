@@ -22,7 +22,7 @@ const filterWithJustEnd = (endDate) => {
   });
 }
 
-const filterWithStartEnd = (endDate) => {
+const filterWithStartEnd = (startDate, endDate) => {
   return ({
     where: {
       createdAt: {

@@ -14,18 +14,13 @@ export class GenReportService {
 
   constructor(private http: HttpClient) { }
 
-  getDailyReport(dates: rangeOfDates): Observable<IRelatorio> {
+  getDailyReport(dates: rangeOfDates): Observable<any> {
 
     const headers = {
       'Authorization': 'Bearer ' + localStorage.getItem('ru+_token')!
     }
 
-    return this.http.get<IRelatorio>(endpoint,{params: dates, headers}).pipe(
-      tap((response) => {
-        console.log("Tentando resgatar relatorio diario")
-      }),
-      catchError((e) => this.errorHandler(e)),
-    )
+    return this.http.get(endpoint,{params: dates, headers});
   }
 
   errorHandler(e: any): Observable<any> {

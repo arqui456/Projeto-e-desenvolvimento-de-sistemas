@@ -39,11 +39,11 @@ export class ValidaUsuarioComponent implements OnInit {
   // 'attach_money' : 'money_off'
 
   getUserIcon(): string {
-    return (this.usuario.qtd_refeicoes_gratis <= 0) ? 'check_circle_outline' : 'attach_money';
+    return (this.usuario.qtd_refeicoes_gratis > 0) ? 'check_circle_outline' : 'attach_money';
   }
 
   getTextoRefeicao(): string {
-    return (this.usuario.qtd_refeicoes_gratis > 0) ? 'refeição paga!' : 'refeição paga!';
+    return (this.usuario.qtd_refeicoes_gratis > 0) ? 'refeição gratuita!' : 'refeição a pagar!';
   }
 
   voltar(){

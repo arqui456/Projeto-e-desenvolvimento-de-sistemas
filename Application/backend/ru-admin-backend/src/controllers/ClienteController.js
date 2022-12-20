@@ -20,11 +20,22 @@ module.exports = {
     try {
       const { cpf, matricula } = req.query;
 
+      const todayDate = new Date();
+      todayDate.setHours(0, 0, 0, 0);
+
       let cliente;
       if (cpf) {
-        cliente = await Cliente.findOne({ where: { cpf }, include: {association: 'refeicoes'}});
+        cliente = await Cliente.findOne({ 
+          where: { 
+            cpf,
+          }, 
+          include: {association: 'refeicoes'}});
       } else if (matricula) {
-        cliente = await Cliente.findOne({ where: { matricula }, include: {association: 'refeicoes'}});
+        cliente = await Cliente.findOne({ 
+          where: { 
+            matricula,
+          },
+          include: {association: 'refeicoes'}});
       } else {
         return res.status(400).json({error: 'CPF ou matricula necessarios para realizar a consulta.'});
       }
