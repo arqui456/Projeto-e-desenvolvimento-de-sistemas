@@ -20,7 +20,7 @@ export class GenReportService {
       'Authorization': 'Bearer ' + localStorage.getItem('ru+_token')!
     }
 
-    return this.http.get(endpoint,{params: dates, headers});
+    return this.http.get(endpoint,{params: dates, headers, responseType: 'blob' as 'json'});
   }
 
   errorHandler(e: any): Observable<any> {

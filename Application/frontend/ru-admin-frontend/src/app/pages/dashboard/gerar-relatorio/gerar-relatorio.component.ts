@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { GenReportService } from 'src/app/services/gen-report.service';
 import { MatStartDate } from '@angular/material/datepicker';
 import { buffer } from 'rxjs';
-import {saveAs} from "file-saver";
+import { saveAs } from "file-saver";
 
 @Component({
   selector: 'app-gerar-relatorio',
@@ -17,40 +17,48 @@ export class GerarRelatorioComponent implements OnInit {
   });
   constructor(private reportService: GenReportService) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
-  gerarRelatorioAlunos(){
-    if(this.range.value.start != null && this.range.value.end != null){
+  gerarRelatorioAlunos() {
+    if (this.range.value.start != null && this.range.value.end != null) {
       let start = this.range.value.start!.toString()
       let end = this.range.value.end!.toString()
-      let startFiltered = start.substring(8,15)
-      let endFiltered = start.substring(8,15)
+      let startFiltered = start.substring(8, 15)
+      let endFiltered = end.substring(8, 15)
+      console.log(startFiltered)
+      console.log(endFiltered)
     }
   }
 
-  gerarRelatorioDiario(){
+  gerarRelatorioDiario() {
     let startDate: string = ""
     let endDate: string = ""
 
-    if(this.range.value.start != null || this.range.value.end != null) {
-      startDate = this.range.value.start!.getFullYear().toString() + "-" +
-                              this.range.value.start!.getMonth().toString() +  "-" +
-                              this.range.value.start!.getDay().toString()
-      endDate   = this.range.value.start!.getFullYear().toString() + "-" +
-                              this.range.value.start!.getMonth().toString() + "-" +
-                              this.range.value.start!.getDay().toString()
+    if (this.range.value.start != null || this.range.value.end != null) {
+      startDate = this.range.value.start!.getFullYear().toString() + "-" + 
+      (this.range.value.start!.getMonth() + 1).toString() + "-" +
+      this.range.value.start!.getDate().toString() 
+      endDate = this.range.value.end!.getFullYear().toString() + "-" + 
+       (this.range.value.end!.getMonth() + 1).toString() + "-" +
+       this.range.value.end!.getDate().toString() 
+      
+        
     }
+    console.log(startDate)
+    console.log(endDate)
+    console.log(this.range.value)
 
     this.reportService.getDailyReport({
       startDate: startDate,
-      endDate: endDate}).subscribe((buffer) => {
-        console.log(buffer);
-        const data: Blob = new Blob([buffer], {
-          type: "text/csv;charset=utf-8"
-        });
-        // you may improve this code to customize the name 
-        // of the export based on date or some other factors
-        saveAs(data, "products.csv");
+      endDate: endDate
+    }).subscribe((buffer) => {
+      console.log(buffer);
+      const data: Blob = new Blob([buffer], {
+        type: "text/csv;charset=utf-8"
       });
+      // you may improve this code to customize the name 
+      // of the export based on date or some other factors
+      saveAs(data, "relatorio_diario.csv");
+    });
   }
 }

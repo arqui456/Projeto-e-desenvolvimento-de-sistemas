@@ -12,9 +12,12 @@ module.exports = {
       let { startDate, endDate } = req.query;
       startDate = startDate || INITIAL_DATE.toISOString();
       endDate = endDate || new Date().toISOString();
-    
+      // let aux = startDate
+      // startDate = endDate
+      // endDate = aux
       if (!(startDate && endDate)) { return res.status(400).end(); }
-
+      console.log(startDate);
+      console.log(endDate);
       await writeRelatorio(startDate, endDate);
 
       res.download('./uploads/relatorio.csv', 'relatorio.csv', (err) => {
@@ -35,7 +38,8 @@ async function writeRelatorio(startDate, endDate) {
 
   let clientesList;
   clientesList = await queryClienteAndRelatedRefeicoes(startDate, endDate);
-  csv = new ObjectsToCsv(clientesList);
+  console.log(clientesList);
+  let csv = new ObjectsToCsv(clientesList);
   await csv.toDisk('./uploads/relatorio.csv', {append: true});
 }
 
