@@ -8,6 +8,7 @@
             formControlName = "email"
             class="margin-top"
             [placeholder]="'E-mail'"
+            [inputSize]="'md'"
         ></app-input>
         <app-input
             (inputValueChange) = "passwordHandler($event.toString())"
@@ -16,6 +17,7 @@
             class="margin-top"
             [placeholder]="'Senha'"
             [tipoEntrada]="'password'"
+            [inputSize]="'md'"
         ></app-input>
         <app-button
             (click) = "login()"

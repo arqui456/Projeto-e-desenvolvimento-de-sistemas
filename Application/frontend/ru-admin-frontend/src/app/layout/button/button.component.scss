@@ -37,6 +37,24 @@ button {
     color: var(--white);
     background-color: var(--default);
   }
+
+  .onlyIcon {
+    background-color: transparent;
+    color: var(--white);
+    font-size: 30px;
+    padding: 0 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .onlyIcon:hover, .onlyIcon:focus {
+    filter: brightness(0.7);
+    cursor: pointer;
+    position: relative;
+  }
   
   .primary {
     background-color: var(--primary);
@@ -64,6 +82,8 @@ button {
   .outline:hover,
   .outline:focus {
     filter: brightness(0.7);
+    position: relative;
+    cursor: pointer;
   }
   
 //   .box-shadow {
