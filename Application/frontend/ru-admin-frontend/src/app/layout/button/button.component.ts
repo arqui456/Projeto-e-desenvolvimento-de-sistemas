@@ -8,7 +8,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class ButtonComponent implements OnInit {
 
   @Input() btnLabel: string = 'Default';
-  @Input() btnClass: 'button' | 'outline' | 'text' = 'button';
+  @Input() btnClass: 'button' | 'outline' | 'text' | 'onlyIcon' = 'button';
   @Input() boxShadow: boolean = false;
   @Input() btnDisabled: boolean = false;
   @Input() btnIcon: boolean = false;
