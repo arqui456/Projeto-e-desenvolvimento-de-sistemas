@@ -1,3 +1,4 @@
+import { IClient } from './../../../models/IClient';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { QueryClientService } from 'src/app/services/query-client.service';
@@ -9,10 +10,14 @@ import { QueryClientService } from 'src/app/services/query-client.service';
 })
 export class ConsultaUsuarioComponent implements OnInit {
 
-  validatedUsed: boolean = false;
+  validatedUsed: boolean = true;
   cpfValue: string = "";
+  clientData: IClient = {
+    cpf: '', matricula: '', nome: '', qtd_refeicoes_gratis: 0, refeicoes: [],
+    ativo: false
+  };
 
-  constructor(private router: Router, private clientService: QueryClientService) { }
+  constructor(private router: Router, public clientService: QueryClientService) { }
 
   ngOnInit(): void {
     this.validatedUsed = false;
@@ -23,16 +28,14 @@ export class ConsultaUsuarioComponent implements OnInit {
   }
 
   queryUserEvent() {
-    this.validatedUsed = true;
-    console.log(this.validatedUsed);
+    this.clientService.setClient();
+    console.log('aaaaaaa')
     this.clientService.queryClient({ cpf: this.cpfValue})
       .subscribe(data => {
+        this.clientData = data;
         console.log(data);
     });
-
-    if(this.validatedUsed) {
-      
-    }
+    this.clientService.setClientData(this.clientData);
   }
 
 }

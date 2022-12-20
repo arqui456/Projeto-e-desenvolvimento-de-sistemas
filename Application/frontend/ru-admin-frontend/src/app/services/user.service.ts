@@ -21,14 +21,7 @@ export class UserService {
       tap((response) =>{
         if(!response.auth) return;
         localStorage.setItem('ru+_token', response["token"]);
-        //localStorage.setItem('user', btoa(JSON.stringify(response["user"])));
       }));
-      /*return this.mockUserLogin(user).pipe(tap((response) =>{
-        if(!response.sucess) return;
-        localStorage.setItem('token', btoa(JSON.stringify("Token")));
-        localStorage.setItem('user', btoa(JSON.stringify(user)));
-        this.router.navigate(['dashboard']);
-      }));*/
   }
 
   private mockUserLogin(user: IUser): Observable<any> {
