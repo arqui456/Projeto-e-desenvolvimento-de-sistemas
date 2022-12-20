@@ -1,4 +1,4 @@
-<app-container-conteudo [class]="'controle-padding d-flex'">
+<app-container-conteudo [class]="'controle-padding d-flex'" *ngIf="clientService.getNotClient | async">
     <app-logo></app-logo>
     <h2 id="title">Consultar Usuário</h2>
     <section class="gap">
@@ -19,4 +19,4 @@
     </section>
 </app-container-conteudo>
 
-<app-valida-usuario *ngIf="validatedUsed"></app-valida-usuario>
+<app-valida-usuario [usuario]="clientData" *ngIf="clientService.getClient | async"></app-valida-usuario>

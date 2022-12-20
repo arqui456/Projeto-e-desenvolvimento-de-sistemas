@@ -12,7 +12,7 @@ const RelatorioController = require('./controllers/RelatorioController');
 
 
 router.get('/', (req, res) => {
-  res.status(200).send('hello world');
+  res.status(200).send('resposta errada ;)');
 });
 
 router.post('/user/login', UsuarioController.login);
@@ -23,7 +23,7 @@ router.get('/cliente', verifyJWT, onlySuperUser, ClienteController.getCliente);/
 
 router.post('/cliente', verifyJWT, onlySuperUser, ClienteController.store);//teste
 
-router.post('/refeicao/:cliente_id/registrar-refeicao', verifyJWT, ClienteRefeicaoController.registerMeal);
+router.get('/refeicao/:cliente_id/registrar-refeicao', verifyJWT, ClienteRefeicaoController.registerMeal);
 
 router.get('/refeicao', verifyJWT, onlySuperUser, ClienteRefeicaoController.getRefeicoes);
 
