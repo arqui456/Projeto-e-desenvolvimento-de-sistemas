@@ -10,6 +10,7 @@ import { SidebarComponent } from './sidebar/sidebar.component'
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
+import { ModalLoadingComponent } from './modal-loading/modal-loading.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { MatInputModule } from '@angular/material/input';
     IconComponent,
     LogoComponent,
     ContainerConteudoComponent,
-    SidebarComponent
+    SidebarComponent,
+    ModalLoadingComponent
   ],
   imports: [
     CommonModule,
@@ -34,7 +36,8 @@ import { MatInputModule } from '@angular/material/input';
     IconComponent,
     LogoComponent,
     ContainerConteudoComponent,
-    SidebarComponent
+    SidebarComponent,
+    ModalLoadingComponent
   ]
 })
 export class LayoutModule { }
