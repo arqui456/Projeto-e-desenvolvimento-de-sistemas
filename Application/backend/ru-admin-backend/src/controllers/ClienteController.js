@@ -2,6 +2,7 @@ const sequelize = require('../database');
 const Cliente = require('../models/Cliente');
 const fs = require('fs');
 const { parse } = require('csv-parse');
+const { where } = require('sequelize');
 
 
 module.exports = {
@@ -26,16 +27,28 @@ module.exports = {
       let cliente;
       if (cpf) {
         cliente = await Cliente.findOne({ 
-          where: { 
-            cpf,
-          }, 
-          include: {association: 'refeicoes'}});
+          where: { cpf }, 
+          include: {
+            association: 'refeicoes',
+            where: {
+              createdAt: {
+                [Op.gte]: todayDate,
+              }
+            }
+          }
+        });
       } else if (matricula) {
         cliente = await Cliente.findOne({ 
-          where: { 
-            matricula,
-          },
-          include: {association: 'refeicoes'}});
+          where: { matricula },
+          include: {
+            association: 'refeicoes',
+            where: {
+              createdAt: {
+                [Op.gte]: todayDate,
+              }
+            }
+          }
+        });
       } else {
         return res.status(400).json({error: 'CPF ou matricula necessarios para realizar a consulta.'});
       }
