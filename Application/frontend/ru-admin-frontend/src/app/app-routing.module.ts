@@ -11,20 +11,23 @@ import { GerarRelatorioComponent } from './pages/dashboard/gerar-relatorio/gerar
 import { CriarFuncionarioComponent } from './pages/dashboard/gerenciar-funcionarios/criar-funcionario/criar-funcionario.component';
 import { DeletarFuncionarioComponent } from './pages/dashboard/gerenciar-funcionarios/deletar-funcionario/deletar-funcionario.component';
 import { EditarFuncionarioComponent } from './pages/dashboard/gerenciar-funcionarios/editar-funcionario/editar-funcionario.component';
+import { AuthorizedGuard } from './guards/authorized.guard';
+import { PrivilegeGuard } from './guards/privilege.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full'},
+  { path: '', redirectTo: 'login', pathMatch: 'full'},
   { path: 'login', component: LoginComponent},
-  { path: 'dashboard', component: DashboardComponent},
-  { path: 'dashboard/pagina-inicial', component: PaginaInicialComponent}, 
-  { path: 'dashboard/consultar-usuario', component: ConsultaUsuarioComponent},
-  { path: 'dashboard/consultar-usuario/valida-usuario', component:  ValidaUsuarioComponent},
-  { path: 'dashboard/enviar-base', component:  EnviarBaseComponent},
-  { path: 'dashboard/gerar-relatorio', component:  GerarRelatorioComponent},
-  { path: 'dashboard/gerenciar-funcionarios', component:  GerenciarFuncionariosComponent},
-  { path: 'dashboard/gerenciar-funcionarios/criar', component:  CriarFuncionarioComponent},
-  { path: 'dashboard/gerenciar-funcionarios/deletar/:funcionario_id', component:  DeletarFuncionarioComponent},
-  { path: 'dashboard/gerenciar-funcionarios/editar/:funcionario_id', component:  EditarFuncionarioComponent},
+  { path: 'dashboard', component: DashboardComponent, canActivate:[AuthorizedGuard]},
+  { path: 'dashboard/pagina-inicial', component: PaginaInicialComponent, canActivate:[AuthorizedGuard]}, 
+  { path: 'dashboard/consultar-usuario', component: ConsultaUsuarioComponent, canActivate:[AuthorizedGuard]},
+  { path: 'dashboard/consultar-usuario/valida-usuario', component:  ValidaUsuarioComponent, canActivate:[AuthorizedGuard]},
+  { path: 'dashboard/enviar-base', component:  EnviarBaseComponent, canActivate:[AuthorizedGuard, PrivilegeGuard]},
+  { path: 'dashboard/gerar-relatorio', component:  GerarRelatorioComponent, canActivate:[AuthorizedGuard, PrivilegeGuard]},
+  { path: 'dashboard/gerenciar-funcionarios', component:  GerenciarFuncionariosComponent, canActivate:[AuthorizedGuard, PrivilegeGuard]},
+  { path: 'dashboard/gerenciar-funcionarios/criar', component:  CriarFuncionarioComponent, canActivate:[AuthorizedGuard, PrivilegeGuard]},
+  { path: 'dashboard/gerenciar-funcionarios/deletar/:funcionario_id', component:  DeletarFuncionarioComponent, canActivate:[AuthorizedGuard, PrivilegeGuard]},
+  { path: 'dashboard/gerenciar-funcionarios/editar/:funcionario_id', component:  EditarFuncionarioComponent, canActivate:[AuthorizedGuard, PrivilegeGuard]},
+  {path:'**', redirectTo:'login'}
 ];
 
 @NgModule({

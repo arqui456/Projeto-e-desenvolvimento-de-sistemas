@@ -33,20 +33,12 @@ export class GerarRelatorioComponent implements OnInit {
   gerarRelatorioDiario() {
     let startDate: string = ""
     let endDate: string = ""
+    
+    if (this.range.value.start != null || this.range.value.end != null) { 
+      startDate = this.range.value.start!.toISOString().split('T')[0]
 
-    if (this.range.value.start != null || this.range.value.end != null) {
-      startDate = this.range.value.start!.getFullYear().toString() + "-" + 
-      (this.range.value.start!.getMonth() + 1).toString() + "-" +
-      this.range.value.start!.getDate().toString() 
-      endDate = this.range.value.end!.getFullYear().toString() + "-" + 
-       (this.range.value.end!.getMonth() + 1).toString() + "-" +
-       this.range.value.end!.getDate().toString() 
-      
-        
+      endDate = this.range.value.end!.toISOString().split('T')[0]
     }
-    console.log(startDate)
-    console.log(endDate)
-    console.log(this.range.value)
 
     this.reportService.getDailyReport({
       startDate: startDate,

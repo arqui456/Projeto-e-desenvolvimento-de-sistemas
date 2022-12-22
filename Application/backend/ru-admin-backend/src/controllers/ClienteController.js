@@ -1,4 +1,5 @@
 const sequelize = require('../database');
+const sqlz = require("sequelize");
 const Cliente = require('../models/Cliente');
 const fs = require('fs');
 const { parse } = require('csv-parse');
@@ -30,11 +31,6 @@ module.exports = {
           where: { cpf }, 
           include: {
             association: 'refeicoes',
-            where: {
-              createdAt: {
-                [Op.gte]: todayDate,
-              }
-            }
           }
         });
       } else if (matricula) {
@@ -42,11 +38,6 @@ module.exports = {
           where: { matricula },
           include: {
             association: 'refeicoes',
-            where: {
-              createdAt: {
-                [Op.gte]: todayDate,
-              }
-            }
           }
         });
       } else {

@@ -12,10 +12,9 @@ module.exports = {
       let { startDate, endDate } = req.query;
       startDate = startDate || INITIAL_DATE.toISOString();
       endDate = endDate || new Date().toISOString();
-      // let aux = startDate
-      // startDate = endDate
-      // endDate = aux
+
       if (!(startDate && endDate)) { return res.status(400).end(); }
+      console.log("bagaceira")
       console.log(startDate);
       console.log(endDate);
       await writeRelatorio(startDate, endDate);

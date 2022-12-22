@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
+import { SidebarItem } from 'src/app/models/sidebar-item.model';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,7 @@ export class LoginComponent implements OnInit {
   userEmail = "";
   userPassword = "";
   online: boolean = false;
-
+  sidebarItens:SidebarItem[] = [];
   @Output() isUserOnline: EventEmitter<boolean> = new EventEmitter<boolean>();
   
   constructor(private formBuilder: FormBuilder,
@@ -72,10 +73,29 @@ export class LoginComponent implements OnInit {
           duration: 3000
         });
       }
-      this.setUserStatus(true);
-      this.router.navigate(['dashboard']);
+      this.userService.checkUserPrivilege().subscribe(value =>{
+        this.sidebarItens = this.updateSidenav(value);
+        this.setUserStatus(true);
+        if(value) this.router.navigate(['dashboard/gerar-relatorio']);
+        else this.router.navigate(['dashboard/consultar-usuario']);
+        this.userService.setSidenavItens(this.sidebarItens);
+      })
     })
   }
 
+  private updateSidenav(isPrivileged:boolean):SidebarItem[]{
+    if(isPrivileged){
+      return [
+        {titulo: 'Gerar Relatório', icone: 'insert_drive_file', linkTo: 'dashboard/gerar-relatorio'},
+        {titulo: 'Gerenciar Funcionários', icone: 'people', linkTo: 'dashboard/gerenciar-funcionarios'}, 
+        {titulo: 'Enviar Base de Dados', icone: 'cloud_upload', linkTo: 'dashboard/enviar-base'},
+      ];
+    }
+    else{
+      return [
+        {titulo: 'Consultar Usuário', icone: 'search', linkTo: 'dashboard/consultar-usuario'},
+      ];
+    }
+  }
 
 }

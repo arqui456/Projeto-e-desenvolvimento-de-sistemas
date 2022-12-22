@@ -8,6 +8,6 @@
     <link rel="icon" type="image/x-icon" href="../assets/icons/favicon.ico">
 </head>
 <body>
-    <app-sidebar [itensList]="sidebarList" *ngIf="userService.getLoggedIn | async"></app-sidebar>
+    <app-sidebar *ngIf="userService.getLoggedIn | async"></app-sidebar>
     <router-outlet></router-outlet>
 </body>

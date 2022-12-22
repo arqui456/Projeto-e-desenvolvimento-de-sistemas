@@ -12,7 +12,7 @@ export class SidebarComponent implements OnInit {
 
   visualizaMenu: boolean = true;
 
-  @Input() itensList: SidebarItem[] = [{titulo: '', icone: '', linkTo: ''}];
+  public itensList: SidebarItem[] = [{titulo: '', icone: '', linkTo: ''}];
 
   @ViewChild('sidebarMenu', { static: false }) sidebarMenu: ElementRef = new ElementRef('');
 
@@ -20,6 +20,9 @@ export class SidebarComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit(): void {
+    this.userService.getSidenavItens().subscribe(items =>{
+      this.itensList = items;
+    });
     // this.sidebarMenu.nativeElement.style.visibility = 'hidden';
   }
 
