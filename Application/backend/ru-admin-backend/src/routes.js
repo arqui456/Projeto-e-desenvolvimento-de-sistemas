@@ -9,6 +9,7 @@ const ClienteRefeicaoController = require('./controllers/ClienteRefeicaoControll
 const UsuarioController = require('./controllers/UsuarioController');
 const { verifyJWT, onlySuperUser } = require('./utils/middlewares');
 const RelatorioController = require('./controllers/RelatorioController');
+const FuncionarioController = require('./controllers/FuncionarioController');
 
 
 router.get('/', (req, res) => {
@@ -30,5 +31,11 @@ router.get('/refeicao', verifyJWT, onlySuperUser, ClienteRefeicaoController.getR
 router.get('/relatorio/por-aluno', verifyJWT, onlySuperUser, RelatorioController.getPorAluno);
 
 router.get('/relatorio/por-dia', verifyJWT, onlySuperUser, RelatorioController.getPorDia);
+
+router.post('/funcionario/cadastro', verifyJWT, onlySuperUser, FuncionarioController.registerFuncionario);
+
+router.get('/funcionarios', verifyJWT, onlySuperUser, FuncionarioController.getFuncionarios);
+
+router.delete('/funcionario/deletar', verifyJWT, onlySuperUser, FuncionarioController.deletarFuncionario);
 
 module.exports = router;

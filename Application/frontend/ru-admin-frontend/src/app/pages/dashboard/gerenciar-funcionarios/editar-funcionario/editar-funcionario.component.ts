@@ -12,10 +12,10 @@ export class EditarFuncionarioComponent implements OnInit {
   funcionario: IFuncionario = {
     funcionario_id: '1',
     nome:"alguém",
-    cpf:"12312312312",
-    email:"algo1231312@gmail.com",
+    username:'',
     senha:"alguma senha"
   }
+  senhaRepetida: string='';
   constructor(private funcionariosService:FuncionariosService , private router:Router, private route:ActivatedRoute) { }
 
   ngOnInit(): void {

@@ -25,7 +25,7 @@ const routes: Routes = [
   { path: 'dashboard/gerar-relatorio', component:  GerarRelatorioComponent, canActivate:[AuthorizedGuard, PrivilegeGuard]},
   { path: 'dashboard/gerenciar-funcionarios', component:  GerenciarFuncionariosComponent, canActivate:[AuthorizedGuard, PrivilegeGuard]},
   { path: 'dashboard/gerenciar-funcionarios/criar', component:  CriarFuncionarioComponent, canActivate:[AuthorizedGuard, PrivilegeGuard]},
-  { path: 'dashboard/gerenciar-funcionarios/deletar/:funcionario_id', component:  DeletarFuncionarioComponent, canActivate:[AuthorizedGuard, PrivilegeGuard]},
+  { path: 'dashboard/gerenciar-funcionarios/deletar', component:  DeletarFuncionarioComponent, canActivate:[AuthorizedGuard, PrivilegeGuard]},
   { path: 'dashboard/gerenciar-funcionarios/editar/:funcionario_id', component:  EditarFuncionarioComponent, canActivate:[AuthorizedGuard, PrivilegeGuard]},
   { path: '**', redirectTo:'login'}
 ];

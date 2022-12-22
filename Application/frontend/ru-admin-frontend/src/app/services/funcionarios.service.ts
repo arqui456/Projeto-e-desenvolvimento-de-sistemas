@@ -1,14 +1,20 @@
 import { IFuncionario } from './../models/IFuncionario';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { HttpClient } from '@angular/common/http';
-import { catchError, EMPTY, map, Observable } from 'rxjs';
-const apiUrlUser = environment.apiUrl + "/cliente/update";
+import { catchError, EMPTY, map, Observable, of } from 'rxjs';
+const apiUrlUser = environment.apiUrl;
 @Injectable({
   providedIn: 'root'
 })
 export class FuncionariosService {
+
+  funcionario: IFuncionario = {
+    nome:'',
+    username:'',
+    senha:''
+  }
 
   constructor(private snackBar: MatSnackBar,private http: HttpClient) { }
   sendCsvDatabase(csvFile:File){
@@ -18,22 +24,28 @@ export class FuncionariosService {
       catchError((e) => this.errorHandler(e)),
     )
   }
-  showMessage(msg: string, isError: boolean = false): void {
+  showMessage(msg: string, isError: boolean = false, hPosition:MatSnackBarHorizontalPosition = 'right', vPosition:MatSnackBarVerticalPosition = 'top'): void {
     this.snackBar.open(msg, 'X', {
       duration: 3000,
-      horizontalPosition: 'right',
-      verticalPosition: 'top',
+      horizontalPosition: hPosition,
+      verticalPosition: vPosition,
       panelClass: isError ? ['msg-error'] : ['msg-success'],
     })
   }
   create(product: IFuncionario): Observable<IFuncionario> {
-    return this.http.post<IFuncionario>(apiUrlUser, product).pipe(
+    const headers = {
+      'Authorization': 'Bearer ' + localStorage.getItem('ru+_token')!
+    }
+    return this.http.post<IFuncionario>(apiUrlUser + '/funcionario/cadastro',{product}, {headers}).pipe(
       map((obj) => obj),
       catchError((e) => this.errorHandler(e)),
     )
   }
   read(): Observable<IFuncionario[]> {
-    return this.http.get<IFuncionario[]>(apiUrlUser).pipe(
+    const headers = {
+      'Authorization': 'Bearer ' + localStorage.getItem('ru+_token')!
+    }
+    return this.http.get<IFuncionario[]>(apiUrlUser + '/funcionarios', {headers}).pipe(
       map((obj) => obj),
       catchError((e) => this.errorHandler(e)),
     )
@@ -58,6 +70,12 @@ export class FuncionariosService {
       map((obj) => obj),
       catchError((e) => this.errorHandler(e)),
     )
+  }
+  public setFuncionario(funcionario:IFuncionario){
+    this.funcionario = funcionario;
+  }
+  public getFuncionario():Observable<IFuncionario>{
+    return of(this.funcionario);
   }
   errorHandler(e: any): Observable<any> {
     this.showMessage('Ocorreu um erro', true)

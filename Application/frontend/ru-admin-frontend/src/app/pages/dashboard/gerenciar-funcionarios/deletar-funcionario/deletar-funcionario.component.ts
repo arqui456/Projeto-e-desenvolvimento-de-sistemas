@@ -12,24 +12,16 @@ export class DeletarFuncionarioComponent implements OnInit {
   funcionario: IFuncionario = {
     funcionario_id: '1',
     nome:"alguém",
-    cpf:"12312312312",
-    email:"algo1231312@gmail.com",
+    username:'',
     senha:"alguma senha"
   }
+  senhaRepetida: string='';
   constructor(private funcionariosService:FuncionariosService , private router:Router, private route:ActivatedRoute) { }
 
   ngOnInit(): void {
-    const id = 1
-    //const id = this.route.snapshot.paramMap.get('id')
-    if(id!=null){
-      this.router.navigate(['dashboard/gerenciar-funcionarios/deletar/1'])
-      // this.funcionariosService.readById(id).subscribe(funcionario=>{
-      //   this.funcionario = funcionario
-      // })
-    }
-    else{
-      this.router.navigate(['dashboard/gerenciar-funcionarios'])
-    }
+    this.funcionariosService.getFuncionario().subscribe(funcionario =>{
+      this.funcionario = funcionario;
+    });
   }
   deletarFuncionario():void{
     if(this.funcionario.funcionario_id!=null){

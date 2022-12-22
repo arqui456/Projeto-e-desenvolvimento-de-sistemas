@@ -10,5 +10,8 @@ button{
   display: flex;
   flex-direction: column;
   align-items: center;
+  align-self: center;
   z-index: 0;
+  margin-left: 25%;
+  margin-right: 25%;
 }

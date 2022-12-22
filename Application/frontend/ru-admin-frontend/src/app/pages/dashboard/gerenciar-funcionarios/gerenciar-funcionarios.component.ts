@@ -9,14 +9,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./gerenciar-funcionarios.component.scss']
 })
 export class GerenciarFuncionariosComponent implements OnInit {
-  funcionarios:IFuncionario[] = [{
-    funcionario_id: '1',
-    nome:"alguém",
-    cpf:"12312312312",
-    email:"algo1231312@gmail.com",
-    senha:"alguma senha"
-  },]
-  displayedColumns = ['nome', 'email','acoes'] 
+  funcionarios:IFuncionario[] = []
+  displayedColumns = ['nome', 'username','acoes'] 
   constructor(private funcionariosService:FuncionariosService, private router:Router) { }
 
   ngOnInit(): void {
@@ -27,6 +21,10 @@ export class GerenciarFuncionariosComponent implements OnInit {
   }
   navigateToCriarFuncionario(){
     this.router.navigate(["dashboard/gerenciar-funcionarios/criar"])
+  }
+  navigateToDelete(funcionario:IFuncionario){
+    this.funcionariosService.setFuncionario(funcionario);
+    this.router.navigate(["dashboard/gerenciar-funcionarios/deletar"])
   }
 
 }

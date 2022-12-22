@@ -39,9 +39,6 @@ module.exports = {
       endDate = endDate || new Date().toISOString();
 
       if (!(startDate && endDate)) { return res.status(400).end(); }
-      console.log("bagaceira")
-      console.log(startDate);
-      console.log(endDate);
       await writeRelatorio(startDate, endDate);
 
       res.download('./uploads/relatorio.csv', 'relatorio.csv', (err) => {
