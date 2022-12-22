@@ -1,9 +1,8 @@
-const sequelize = require('../database');
 const sqlz = require("sequelize");
 const Cliente = require('../models/Cliente');
 const fs = require('fs');
 const { parse } = require('csv-parse');
-const { where } = require('sequelize');
+const dateTime = require('date-and-time');
 
 
 module.exports = {
@@ -22,8 +21,9 @@ module.exports = {
     try {
       const { cpf, matricula } = req.query;
 
-      const todayDate = new Date();
+      let todayDate = new Date();
       todayDate.setHours(0, 0, 0, 0);
+      dateTime.addHours(todayDate, -3);
 
       let cliente;
       if (cpf) {
@@ -31,6 +31,11 @@ module.exports = {
           where: { cpf }, 
           include: {
             association: 'refeicoes',
+            where: {
+              createdAt: {
+                [sqlz.Op.gte]: todayDate,
+              }
+            }
           }
         });
       } else if (matricula) {
@@ -38,6 +43,11 @@ module.exports = {
           where: { matricula },
           include: {
             association: 'refeicoes',
+            where: {
+              createdAt: {
+                [sqlz.Op.gte]: todayDate,
+              }
+            }
           }
         });
       } else {
@@ -47,7 +57,7 @@ module.exports = {
       if (!cliente){
         return res.status(400).json({error: 'cliente nao encontrado.'});
       }
-      return res.json(cliente);
+      return res.status(200).json(cliente);
     } catch (err) {
       console.error(err);
       return res.status(500).json({error: 'Ocorreu um erro o recuperar as informacoes do cliente.'});

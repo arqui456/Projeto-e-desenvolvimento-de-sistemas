@@ -7,6 +7,31 @@ const ObjectsToCsv = require('objects-to-csv');
 
 
 module.exports = {
+  async getPorDia(req, res) {
+    try {
+      let { startDate, endDate } = req.query;
+      startDate = startDate || INITIAL_DATE.toISOString();
+      endDate = endDate || new Date().toISOString();
+      const refeicoes = await ClienteRefeicao.findAll({
+        where: {
+          createdAt: {
+            [sequelize.Op.gte]: startDate,
+            [sequelize.Op.lte]: endDate,
+          },
+        },
+        attributes: [
+          "refeicao_id", [sequelize.fn("COUNT", sequelize.col("refeicao_id")), "count_refeicao"]
+        ],
+        // include: [{model: ClienteRefeicao, as: 'refeicoes', attributes: []}],
+        group: ['refeicao_id'],
+      });
+      return res.status(200).json(refeicoes);
+    } catch (err) {
+      console.error(err);
+      return res.status(500).json({error: 'Ocorreu um erro ao criar o relatorio'});
+    }
+  },
+
   async getPorAluno(req, res) {
     try {
       let { startDate, endDate } = req.query;

@@ -19,7 +19,7 @@ router.post('/user/login', UsuarioController.login);
 
 router.post('/cliente/update', verifyJWT, onlySuperUser, upload, ClienteController.bulkUpsert);//enviar db
 
-router.get('/cliente', verifyJWT, onlySuperUser, ClienteController.getCliente);//teste
+router.get('/cliente', verifyJWT, ClienteController.getCliente);
 
 router.post('/cliente', verifyJWT, onlySuperUser, ClienteController.store);//teste
 
@@ -28,5 +28,7 @@ router.get('/refeicao/:cliente_id/registrar-refeicao', verifyJWT, ClienteRefeica
 router.get('/refeicao', verifyJWT, onlySuperUser, ClienteRefeicaoController.getRefeicoes);
 
 router.get('/relatorio/por-aluno', verifyJWT, onlySuperUser, RelatorioController.getPorAluno);
+
+router.get('/relatorio/por-dia', verifyJWT, onlySuperUser, RelatorioController.getPorDia);
 
 module.exports = router;

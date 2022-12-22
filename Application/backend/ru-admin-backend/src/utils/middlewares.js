@@ -22,7 +22,7 @@ module.exports = {
       next();
     } catch (err) {
       console.error(err);
-      return res.status(500).json({error: 'Ocorreu um erro ao fazer a autenticacao.'});
+      return res.status(500).json({error: 'Usuário não autorizado.'});
     }
   }
 }

@@ -51,7 +51,7 @@ module.exports = {
 
 async function getRefeicaoByTime() {
   let nome = JANTAR;
-  if (new Date() < LIMIT_ALMOCO) {
+  if (new Date().getHours() < LIMIT_ALMOCO.getHours()) {
     nome = ALMOCO;
   }
   return  await Refeicao.findOne({ where: {nome} });
