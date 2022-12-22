@@ -1,5 +1,4 @@
 const sequelize = require('../database');
-const sqlz = require("sequelize");
 const Cliente = require('../models/Cliente');
 const fs = require('fs');
 const { parse } = require('csv-parse');

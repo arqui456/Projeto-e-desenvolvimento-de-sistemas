@@ -31,6 +31,16 @@ export class LoginComponent implements OnInit {
               }
 
   ngOnInit(): void {
+    let logado = false;
+    this.userService.getLoggedIn.subscribe(
+      value =>{
+        logado = value;
+      }
+    )
+    if(logado){
+      this.userService.logout()
+      window.location.reload();
+    }
     this.createForm();
   }
 
