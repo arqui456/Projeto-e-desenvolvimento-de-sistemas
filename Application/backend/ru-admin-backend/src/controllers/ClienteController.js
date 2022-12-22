@@ -33,7 +33,7 @@ module.exports = {
             association: 'refeicoes',
             where: {
               createdAt: {
-                [sqlz.Op.gte]: todayDate,
+                [sqlz.Op.gte]: todayDate.toISOString(),
               }
             }
           }
@@ -45,7 +45,7 @@ module.exports = {
             association: 'refeicoes',
             where: {
               createdAt: {
-                [sqlz.Op.gte]: todayDate,
+                [sqlz.Op.gte]: todayDate.toISOString(),
               }
             }
           }

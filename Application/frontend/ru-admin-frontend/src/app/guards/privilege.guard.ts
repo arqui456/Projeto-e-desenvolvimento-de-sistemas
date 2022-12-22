@@ -14,7 +14,7 @@ export class PrivilegeGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     let authorized:boolean = false;
-      this.userService.checkLocalUserPrivilege().subscribe(value =>{
+      this.userService.checkUserPrivilege().subscribe(value =>{
         authorized = value;
       })
       if(!authorized){
