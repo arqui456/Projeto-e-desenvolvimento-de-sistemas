@@ -20,13 +20,13 @@
     <ng-container matColumnDef="acoes">
       <th mat-header-cell *matHeaderCellDef>Ações</th>
       <td mat-cell *matCellDef="let row">
-        <a routerLink="editar/{{ row.funcionario_id }}" class="edit">
+        <a (click)="navigateToEdit(row)" class="edit">
           <em class="material-icons">
             edit
           </em>
         </a>
-        <a routerLink="deletar" class="delete">
-          <em class="material-icons" (click)="navigateToDelete(row)">
+        <a (click)="navigateToDelete(row)" class="delete">
+          <em class="material-icons">
             delete
           </em>
         </a>

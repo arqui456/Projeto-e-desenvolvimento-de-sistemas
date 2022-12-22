@@ -29,26 +29,28 @@ module.exports = {
       if (cpf) {
         cliente = await Cliente.findOne({ 
           where: { cpf }, 
-          include: {
+          include: [{
             association: 'refeicoes',
+            required:false,
             where: {
               createdAt: {
                 [sqlz.Op.gte]: todayDate.toISOString(),
               }
             }
-          }
+          }]
         });
       } else if (matricula) {
         cliente = await Cliente.findOne({ 
           where: { matricula },
-          include: {
+          include: [{
             association: 'refeicoes',
+            required:false,
             where: {
               createdAt: {
                 [sqlz.Op.gte]: todayDate.toISOString(),
               }
             }
-          }
+          }]
         });
       } else {
         return res.status(400).json({error: 'CPF ou matricula necessarios para realizar a consulta.'});

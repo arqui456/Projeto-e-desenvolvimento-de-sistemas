@@ -4,6 +4,7 @@ const Usuario = require('../models/Usuario');
 const fs = require('fs');
 const { parse } = require('csv-parse');
 const dateTime = require('date-and-time');
+const {encryptPassword} = require('../utils/encryption')
 
 
 module.exports = {
@@ -23,12 +24,14 @@ module.exports = {
   },
   async registerFuncionario(req, res) {
     try {
-      const { nome, username, senha } = req.body.product;
+      let { nome, username, senha } = req.body.product;
+      senha = await encryptPassword(senha);
+      console.log(senha);
       const funcionario = await Usuario.findOne({ 
           where: { nome }
         });
         if(!funcionario){
-          const created = await Usuario.create({usuario_id: fn('uuid_generate_v4') ,nome: nome, username: username, senha:senha })
+          const created = await Usuario.create({nome: nome, username: username, senha:senha })
           return res.json(created);
         } else {
           return res.status(201).json({error: 'Funcionario com mesmo nome já cadastrado.'});
@@ -40,19 +43,37 @@ module.exports = {
   },
   async deletarFuncionario(req, res) {
     try {
-      const { usuario_id } = req.body.product;
+      const { usuario_id } = req.body;
       const funcionario = await Usuario.findOne({ 
-          where: { nome }
+          where: { usuario_id }
         });
-        if(!funcionario){
+        if(funcionario){
           const created = await Usuario.destroy({where:{usuario_id}});
           return res.json(created);
         } else {
-          return res.status(201).json({error: 'Funcionario com mesmo nome já cadastrado.'});
+          return res.status(201).json({error: 'O funcionário não existe.'});
         }
     } catch (err) {
       console.error(err);
-      return res.status(500).json({error: 'Ocorreu um erro ao registrar a Funcionario.'});
+      return res.status(500).json({error: 'Ocorreu um erro ao Deletar a Funcionario.'});
+    }
+  },
+  async editFuncionario(req, res) {
+    try {
+      let { nome, username, senha, usuario_id } = req.body.funcionario;
+      senha = await encryptPassword(senha);
+      const funcionario = await Usuario.findOne({ 
+          where: { usuario_id }
+        });
+        if(funcionario){
+          const created = await Usuario.update({nome: nome, username: username, senha:senha }, { where: {usuario_id: usuario_id} })
+          return res.json(created);
+        } else {
+          return res.status(201).json({error: 'O funcionário não existe.'});
+        }
+    } catch (err) {
+      console.error(err);
+      return res.status(500).json({error: 'Ocorreu um erro ao Editar a Funcionario.'});
     }
   },
 }

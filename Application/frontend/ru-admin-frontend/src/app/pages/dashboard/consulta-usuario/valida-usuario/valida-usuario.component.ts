@@ -10,7 +10,7 @@ import { QueryUserService } from 'src/app/services/query-user.service';
   styleUrls: ['./valida-usuario.component.scss']
 })
 export class ValidaUsuarioComponent implements OnInit {
-  
+  //TODO: contar tamanho da lista de refeições para selecionar pagantes e não pagantes
   @Input() usuario: IClient = {
     cliente_id: '123456', nome: 'Fulano de Tal', cpf: '123456789', matricula: '123456789', qtd_refeicoes_gratis: 0,
     ativo: false,

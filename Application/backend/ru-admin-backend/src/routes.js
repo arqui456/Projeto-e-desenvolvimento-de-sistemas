@@ -38,4 +38,6 @@ router.get('/funcionarios', verifyJWT, onlySuperUser, FuncionarioController.getF
 
 router.delete('/funcionario/deletar', verifyJWT, onlySuperUser, FuncionarioController.deletarFuncionario);
 
+router.post('/funcionario/editar', verifyJWT, onlySuperUser, FuncionarioController.editFuncionario);
+
 module.exports = router;

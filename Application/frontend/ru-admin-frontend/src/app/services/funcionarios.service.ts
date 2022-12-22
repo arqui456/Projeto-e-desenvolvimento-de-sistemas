@@ -2,7 +2,7 @@ import { IFuncionario } from './../models/IFuncionario';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, EMPTY, map, Observable, of } from 'rxjs';
 const apiUrlUser = environment.apiUrl;
 @Injectable({
@@ -57,16 +57,22 @@ export class FuncionariosService {
       catchError((e) => this.errorHandler(e)),
     )
   }
-  update(product: IFuncionario): Observable<IFuncionario> {
-    const url = `${apiUrlUser}/${product.funcionario_id}`
-    return this.http.put<IFuncionario>(url, product).pipe(
+  update(funcionario: IFuncionario): Observable<IFuncionario> {
+    const url = apiUrlUser + '/funcionario/editar'
+    const headers = {
+      'Authorization': 'Bearer ' + localStorage.getItem('ru+_token')!
+    }
+    return this.http.post<IFuncionario>(url, {funcionario}, {headers}).pipe(
       map((obj) => obj),
       catchError((e) => this.errorHandler(e)),
     )
   }
   delete(id: string): Observable<IFuncionario> {
-    const url = `${apiUrlUser}/${id}`
-    return this.http.delete<IFuncionario>(url).pipe(
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Authorization': 'Bearer ' + localStorage.getItem('ru+_token')! }), body: {usuario_id:id}
+  };
+    const url = apiUrlUser + '/funcionario/deletar';
+    return this.http.delete<IFuncionario>(url, httpOptions).pipe(
       map((obj) => obj),
       catchError((e) => this.errorHandler(e)),
     )
@@ -74,8 +80,8 @@ export class FuncionariosService {
   public setFuncionario(funcionario:IFuncionario){
     this.funcionario = funcionario;
   }
-  public getFuncionario():Observable<IFuncionario>{
-    return of(this.funcionario);
+  public getFuncionario():IFuncionario{
+    return this.funcionario;
   }
   errorHandler(e: any): Observable<any> {
     this.showMessage('Ocorreu um erro', true)

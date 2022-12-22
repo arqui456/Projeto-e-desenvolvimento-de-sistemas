@@ -12,6 +12,8 @@ module.exports = {
       const user = await Usuario.findOne({where: {username}});
       if (user) {
         const result = await bcrypt.compare(senha, user.senha);
+        console.log(senha);
+        console.log(user.senha);
         if (!result) {
           return res.status(401).json({error: 'Nome de usuario ou senha invalidos.'});
         }
@@ -19,7 +21,7 @@ module.exports = {
       const token = jwt.sign(
         {usuario_id: user.usuario_id},
         process.env.SECRET_KEY,
-        {expiresIn: 3600}
+        {expiresIn: 18000}
       );
       res.json({auth: true, token, user});
     } catch (err) {

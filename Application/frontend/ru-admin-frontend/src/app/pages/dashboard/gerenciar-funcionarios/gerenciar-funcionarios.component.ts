@@ -26,5 +26,9 @@ export class GerenciarFuncionariosComponent implements OnInit {
     this.funcionariosService.setFuncionario(funcionario);
     this.router.navigate(["dashboard/gerenciar-funcionarios/deletar"])
   }
+  navigateToEdit(funcionario:IFuncionario){
+    this.funcionariosService.setFuncionario(funcionario);
+    this.router.navigate(["dashboard/gerenciar-funcionarios/editar"])
+  }
 
 }

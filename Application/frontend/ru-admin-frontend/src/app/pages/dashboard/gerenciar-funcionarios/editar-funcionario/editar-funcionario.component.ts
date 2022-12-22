@@ -10,7 +10,7 @@ import { FuncionariosService } from 'src/app/services/funcionarios.service';
 })
 export class EditarFuncionarioComponent implements OnInit {
   funcionario: IFuncionario = {
-    funcionario_id: '1',
+    usuario_id: '1',
     nome:"alguém",
     username:'',
     senha:"alguma senha"
@@ -19,16 +19,7 @@ export class EditarFuncionarioComponent implements OnInit {
   constructor(private funcionariosService:FuncionariosService , private router:Router, private route:ActivatedRoute) { }
 
   ngOnInit(): void {
-    //const id = this.route.snapshot.paramMap.get('id')
-    let id = null
-    if(id!=null){
-      // this.funcionariosService.readById(id).subscribe(funcionario=>{
-      //   this.funcionario = funcionario
-      // })
-    }
-    else{
-      //this.router.navigate(['dashboard/gerenciar-funcionarios'])
-    }
+    this.funcionario = this.funcionariosService.getFuncionario()
   }
   editarFuncionario():void{
     this.funcionariosService.update(this.funcionario).subscribe(()=> {

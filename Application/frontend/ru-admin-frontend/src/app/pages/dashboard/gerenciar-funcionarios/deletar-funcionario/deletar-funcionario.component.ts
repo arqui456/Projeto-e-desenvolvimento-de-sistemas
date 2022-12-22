@@ -10,7 +10,7 @@ import { FuncionariosService } from 'src/app/services/funcionarios.service';
 })
 export class DeletarFuncionarioComponent implements OnInit {
   funcionario: IFuncionario = {
-    funcionario_id: '1',
+    usuario_id: '1',
     nome:"alguém",
     username:'',
     senha:"alguma senha"
@@ -19,15 +19,13 @@ export class DeletarFuncionarioComponent implements OnInit {
   constructor(private funcionariosService:FuncionariosService , private router:Router, private route:ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.funcionariosService.getFuncionario().subscribe(funcionario =>{
-      this.funcionario = funcionario;
-    });
+    this.funcionario = this.funcionariosService.getFuncionario()
   }
   deletarFuncionario():void{
-    if(this.funcionario.funcionario_id!=null){
-      this.funcionariosService.delete(this.funcionario.funcionario_id!.toString()).subscribe(()=> {
-        this.funcionariosService.showMessage('Produto removido com sucesso')
-        this.router.navigate(['dashboard/gerenciar-funcionarios'])
+    if(this.funcionario.usuario_id!=null){
+      this.funcionariosService.delete(this.funcionario.usuario_id!.toString()).subscribe(()=> {
+        this.funcionariosService.showMessage('Produto removido com sucesso');
+        this.router.navigate(['dashboard/gerenciar-funcionarios']);
       })
     }
   }

@@ -34,6 +34,7 @@ export class ConsultaUsuarioComponent implements OnInit {
   queryUserEvent() {
     this.clientService.setClient();
     this.modalLoading.abrir();
+    //TODO: limpar . e - da string e checar tamanho
     this.clientService.queryClient({ cpf: this.cpfValue})
       .subscribe(data => {
         this.clientData = data;
