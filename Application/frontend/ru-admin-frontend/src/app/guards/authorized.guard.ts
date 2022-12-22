@@ -1,6 +1,6 @@
 import { UserService } from './../services/user.service';
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class AuthorizedGuard implements CanActivate {
 
-  constructor(private userService:UserService){}
+  constructor(private userService:UserService, private router:Router){}
 
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -17,6 +17,9 @@ export class AuthorizedGuard implements CanActivate {
       this.userService.getLoggedInBool().subscribe(value =>{
         authorized = value;
       })
+      if(!authorized){
+        this.router.navigate(['/login']);
+      }
       return authorized;
   }
   

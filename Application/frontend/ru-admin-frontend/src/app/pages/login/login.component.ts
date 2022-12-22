@@ -84,28 +84,11 @@ export class LoginComponent implements OnInit {
         });
       }
       this.userService.checkUserPrivilege().subscribe(value =>{
-        this.sidebarItens = this.updateSidenav(value);
         this.setUserStatus(true);
         if(value) this.router.navigate(['dashboard/gerar-relatorio']);
         else this.router.navigate(['dashboard/consultar-usuario']);
-        this.userService.setSidenavItens(this.sidebarItens);
       })
     })
-  }
-
-  private updateSidenav(isPrivileged:boolean):SidebarItem[]{
-    if(isPrivileged){
-      return [
-        {titulo: 'Gerar Relatório', icone: 'insert_drive_file', linkTo: 'dashboard/gerar-relatorio'},
-        {titulo: 'Gerenciar Funcionários', icone: 'people', linkTo: 'dashboard/gerenciar-funcionarios'}, 
-        {titulo: 'Enviar Base de Dados', icone: 'cloud_upload', linkTo: 'dashboard/enviar-base'},
-      ];
-    }
-    else{
-      return [
-        {titulo: 'Consultar Usuário', icone: 'search', linkTo: 'dashboard/consultar-usuario'},
-      ];
-    }
   }
 
 }

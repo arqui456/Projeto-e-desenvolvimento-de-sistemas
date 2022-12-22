@@ -24,9 +24,8 @@ export class UserService {
       tap((response) =>{
         if(!response.auth) return;
         localStorage.setItem('ru+_token', response["token"]);
+        localStorage.setItem('ru+_user', response['user']['super_user']);
         this.userPrivilege = response['user']['super_user'];
-        console.log(this.userPrivilege);
-        console.log(response['user']);
       }));
   }
 
@@ -61,6 +60,10 @@ export class UserService {
   }
 
   public checkUserPrivilege(): Observable<boolean> {
+    return of(localStorage.getItem('ru+_user')=='true');
+  }
+
+  public checkLocalUserPrivilege(): Observable<boolean> {
     return of(this.userPrivilege);
   }
 
@@ -69,7 +72,26 @@ export class UserService {
   }
 
   public getSidenavItens(): Observable<SidebarItem[]> {
-    return of(this.sidebarItens);
+    let some:SidebarItem[]=[];
+    this.checkUserPrivilege().subscribe(value =>{
+      some = this.updateSidenav(value);
+    })
+    return of(some);
+  }
+
+  private updateSidenav(isPrivileged:boolean):SidebarItem[]{
+    if(isPrivileged){
+      return [
+        {titulo: 'Gerar Relatório', icone: 'insert_drive_file', linkTo: 'dashboard/gerar-relatorio'},
+        {titulo: 'Gerenciar Funcionários', icone: 'people', linkTo: 'dashboard/gerenciar-funcionarios'}, 
+        {titulo: 'Enviar Base de Dados', icone: 'cloud_upload', linkTo: 'dashboard/enviar-base'},
+      ];
+    }
+    else{
+      return [
+        {titulo: 'Consultar Usuário', icone: 'search', linkTo: 'dashboard/consultar-usuario'},
+      ];
+    }
   }
   
 }
