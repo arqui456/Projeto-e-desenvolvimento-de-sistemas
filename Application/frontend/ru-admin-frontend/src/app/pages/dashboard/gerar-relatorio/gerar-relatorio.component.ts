@@ -25,15 +25,13 @@ export class GerarRelatorioComponent implements OnInit {
       let end = this.range.value.end!.toString()
       let startFiltered = start.substring(8, 15)
       let endFiltered = end.substring(8, 15)
-      console.log(startFiltered)
-      console.log(endFiltered)
     }
   }
 
   gerarRelatorioDiario() {
     let startDate: string = ""
     let endDate: string = ""
-    
+
     if (this.range.value.start != null || this.range.value.end != null) { 
       startDate = this.range.value.start!.toISOString().split('T')[0]
 

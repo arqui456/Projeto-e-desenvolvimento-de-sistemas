@@ -27,7 +27,7 @@ const routes: Routes = [
   { path: 'dashboard/gerenciar-funcionarios/criar', component:  CriarFuncionarioComponent, canActivate:[AuthorizedGuard, PrivilegeGuard]},
   { path: 'dashboard/gerenciar-funcionarios/deletar/:funcionario_id', component:  DeletarFuncionarioComponent, canActivate:[AuthorizedGuard, PrivilegeGuard]},
   { path: 'dashboard/gerenciar-funcionarios/editar/:funcionario_id', component:  EditarFuncionarioComponent, canActivate:[AuthorizedGuard, PrivilegeGuard]},
-  {path:'**', redirectTo:'login'}
+  { path: '**', redirectTo:'login'}
 ];
 
 @NgModule({
