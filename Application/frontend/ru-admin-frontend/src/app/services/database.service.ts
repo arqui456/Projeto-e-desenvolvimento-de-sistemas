@@ -23,7 +23,6 @@ export class DatabaseService {
 
     return this.http.post<any>(endpoint, csv, {headers}).pipe(
       tap((response) => {
-        console.log("Tentando enviar o arquivo")
       }),
       catchError((e) => this.errorHandler(e)),
     )

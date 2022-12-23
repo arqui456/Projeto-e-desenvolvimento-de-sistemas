@@ -27,8 +27,7 @@ export class SidebarComponent implements OnInit {
   }
 
   teste() {
-    // colocar um debounce aqui 
-    console.log('teste')
+    //TODO: colocar um debounce aqui 
   }
 
   controleVisualizacaoMenu(): void {

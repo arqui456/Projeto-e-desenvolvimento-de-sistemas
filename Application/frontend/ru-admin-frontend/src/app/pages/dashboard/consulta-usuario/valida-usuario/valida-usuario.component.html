@@ -28,6 +28,7 @@
     <app-button [btnLabel]="'voltar'" [btnSize]="'sm'" (click)="voltar()">
     </app-button>
     <app-button
+      *ngIf="clientExists | async"
       [btnLabel]="'confirmar refeição'"
       [btnColor]="'primary'"
       [btnSize]="'md'"

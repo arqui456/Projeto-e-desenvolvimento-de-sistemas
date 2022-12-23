@@ -18,13 +18,15 @@ export class EnviarBaseComponent implements OnInit {
   }
 
   sendDataBase() {
-    //console.log(this.fileToUpload == null ? "nenhum arquivo" : this.fileToUpload.name)
     if (this.fileToUpload != null) {
       this.databaseService.sendCsvDatabase(this.fileToUpload).subscribe((response)=>{
-        console.log(response)
+        if(response['couldNotUpdate'].length <= 0){
+          this.funcionariosService.showMessage('Base atualizada com sucesso',false,'center','bottom' );
+        }
+        else{
+          this.funcionariosService.showMessage(`Linha do cpf ${response['couldNotUpdate'][0]['cpf']} com erro`,true,'center','bottom' );
+        }
       })
-      //let response = this.databaseService.sendCsvDatabase(this.fileToUpload);
-      //console.log(response)
     } else {
       this.funcionariosService.showMessage('Erro: Envio inválido ou vazio.',true,'center','bottom' );
     }
@@ -34,8 +36,6 @@ export class EnviarBaseComponent implements OnInit {
     if (this.fileToUpload != null) {
 
       this.fileName = this.fileToUpload.name;
-      //console.log(this.fileToUpload.name)
-      //console.log(this.fileToUpload)
     }
   }
 

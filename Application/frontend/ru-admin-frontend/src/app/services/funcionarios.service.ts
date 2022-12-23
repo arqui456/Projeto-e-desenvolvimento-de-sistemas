@@ -18,7 +18,6 @@ export class FuncionariosService {
 
   constructor(private snackBar: MatSnackBar,private http: HttpClient) { }
   sendCsvDatabase(csvFile:File){
-    //console.log("chorei")
     return this.http.post<File>(apiUrlUser, csvFile).pipe(
       map((obj) => obj),
       catchError((e) => this.errorHandler(e)),

@@ -25,7 +25,7 @@ export class DeletarFuncionarioComponent implements OnInit {
   deletarFuncionario():void{
     if(this.funcionario.usuario_id!=null){
       this.funcionariosService.delete(this.funcionario.usuario_id!.toString()).subscribe(()=> {
-        this.funcionariosService.showMessage('Produto removido com sucesso');
+        this.funcionariosService.showMessage('Funcionário removido com sucesso');
         this.router.navigate(['dashboard/gerenciar-funcionarios']);
       })
     }

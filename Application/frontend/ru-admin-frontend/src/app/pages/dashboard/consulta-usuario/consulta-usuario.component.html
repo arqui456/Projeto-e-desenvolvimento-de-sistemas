@@ -6,9 +6,9 @@
         <!-- tamanho máximo pendente, verificar com o danilo -->
         <app-input
             [placeholder]="'CPF ou Número de Matrícula'"
-            [tipoEntrada]="'number'"
             [inputSize]="'lg'"
             (inputValueChange) = "registrationCpfHandler($event.toString())"
+            (keyup.enter)="queryUserEvent()"
         >
         </app-input>
         <app-button

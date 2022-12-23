@@ -13,7 +13,6 @@ module.exports = {
       let funcionarios;
       funcionarios = await Usuario.findAll();
       if(funcionarios){
-        console.log(funcionarios.length)
         for(let funcionario of funcionarios){
           funcionario.senha = ''
         }
@@ -30,7 +29,6 @@ module.exports = {
     try {
       let { nome, username, senha } = req.body.product;
       senha = await encryptPassword(senha);
-      console.log(senha);
       const funcionario = await Usuario.findOne({ 
           where: { nome }
         });

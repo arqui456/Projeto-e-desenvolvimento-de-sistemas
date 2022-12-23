@@ -59,7 +59,6 @@ async function writeRelatorio(startDate, endDate) {
 
   let clientesList;
   clientesList = await queryClienteAndRelatedRefeicoes(startDate, endDate);
-  console.log(clientesList);
   let csv = new ObjectsToCsv(clientesList);
   await csv.toDisk('./uploads/relatorio.csv', {append: true});
 }

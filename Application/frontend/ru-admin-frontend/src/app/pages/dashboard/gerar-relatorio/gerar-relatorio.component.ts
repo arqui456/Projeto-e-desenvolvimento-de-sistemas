@@ -15,11 +15,12 @@ export class GerarRelatorioComponent implements OnInit {
     start: new FormControl<Date | null>(null),
     end: new FormControl<Date | null>(null),
   });
+  snackBar: any;
   constructor(private reportService: GenReportService) { }
 
   ngOnInit(): void { }
 
-  gerarRelatorioAlunos() {
+  gerarRelatorioDiario() {
     if (this.range.value.start != null && this.range.value.end != null) {
       let start = this.range.value.start!.toString()
       let end = this.range.value.end!.toString()
@@ -28,7 +29,7 @@ export class GerarRelatorioComponent implements OnInit {
     }
   }
 
-  gerarRelatorioDiario() {
+  gerarRelatorioAlunos() {
     let startDate: string = ""
     let endDate: string = ""
 
@@ -42,13 +43,16 @@ export class GerarRelatorioComponent implements OnInit {
       startDate: startDate,
       endDate: endDate
     }).subscribe((buffer) => {
-      console.log(buffer);
-      const data: Blob = new Blob([buffer], {
-        type: "text/csv;charset=utf-8"
-      });
-      // you may improve this code to customize the name 
-      // of the export based on date or some other factors
-      saveAs(data, "relatorio_diario.csv");
+      if(!buffer){
+        this.reportService.showMessage('Erro: Não foi possível gerar o relatório.',true,'center','bottom' );
+      }
+      else{
+        const data: Blob = new Blob([buffer], {
+          type: "text/csv;charset=utf-8"
+        });
+        saveAs(data, "relatorio_por_cpf.csv");
+      }
+     
     });
   }
 }

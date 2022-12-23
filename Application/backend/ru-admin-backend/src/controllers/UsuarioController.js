@@ -12,8 +12,6 @@ module.exports = {
       const user = await Usuario.findOne({where: {username}});
       if (user) {
         const result = await bcrypt.compare(senha, user.senha);
-        console.log(senha);
-        console.log(user.senha);
         if (!result) {
           return res.status(401).json({error: 'Nome de usuario ou senha invalidos.'});
         }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of, BehaviorSubject, tap, map, catchError, EMPTY } from 'rxjs';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { environment } from 'src/environments/environment';
 import { IClient } from '../models/IClient';
 import { IRefeicoes } from '../models/IRefeicoes';
@@ -73,11 +73,11 @@ export class QueryClientService {
     return of(this.client.matricula);
   }
 
-  showMessage(msg: string, isError: boolean = false): void {
-    this.snackBar.open(msg, 'X', {
+  showMessage(msg: string, isError: boolean = false, hPosition:MatSnackBarHorizontalPosition = 'right', vPosition:MatSnackBarVerticalPosition = 'top'): void {
+    this.snackBar.open(msg, '', {
       duration: 3000,
-      horizontalPosition: 'right',
-      verticalPosition: 'bottom',
+      horizontalPosition: hPosition,
+      verticalPosition: vPosition,
       panelClass: isError ? ['msg-error'] : ['msg-success'],
     })
   }

@@ -27,10 +27,23 @@ export class EditarFuncionarioComponent implements OnInit {
     this.funcionario = this.funcionariosService.getFuncionario();
   }
   editarFuncionario(): void {
-    this.funcionariosService.update(this.funcionario).subscribe(() => {
-      this.funcionariosService.showMessage('Produto atualizado com sucesso');
-      this.router.navigate(['dashboard/gerenciar-funcionarios']);
-    });
+    if(this.funcionario.nome.length > 1 && this.funcionario.username.length > 1 && this.funcionario.senha.length > 1 && this.senhaRepetida.length > 1){
+      if(this.funcionario.senha.length > 7 && this.senhaRepetida.length > 7){
+        if(this.funcionario.senha === this.senhaRepetida){
+          this.funcionariosService.update(this.funcionario).subscribe(() => {
+            this.funcionariosService.showMessage('Funcionário atualizado com sucesso');
+            this.router.navigate(['dashboard/gerenciar-funcionarios']);
+          });
+        }else{
+          this.funcionariosService.showMessage('Erro: As senhas não estão iguais.',true,'center','bottom' );
+        }
+      }else{
+        this.funcionariosService.showMessage('Erro: As senhas devem ter no mínimo 8 caracteres.',true,'center','bottom' );
+      }
+    }else{
+      this.funcionariosService.showMessage('Erro: Preencha todos os campos corretamente.',true,'center','bottom' );
+    }
+    
   }
   cancel() {
     this.router.navigate(['dashboard/gerenciar-funcionarios']);

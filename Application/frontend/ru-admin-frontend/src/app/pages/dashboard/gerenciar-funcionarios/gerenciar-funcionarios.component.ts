@@ -16,7 +16,6 @@ export class GerenciarFuncionariosComponent implements OnInit {
   ngOnInit(): void {
     this.funcionariosService.read().subscribe(funcionarios=>{
       this.funcionarios = funcionarios
-      console.log(funcionarios)
     })
   }
   navigateToCriarFuncionario(){

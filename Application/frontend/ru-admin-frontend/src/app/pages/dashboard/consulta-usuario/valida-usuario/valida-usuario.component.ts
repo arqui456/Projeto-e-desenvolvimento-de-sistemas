@@ -1,3 +1,4 @@
+import { Observable, of } from 'rxjs';
 import { IClient } from './../../../../models/IClient';
 import { Component, Input, OnInit } from '@angular/core';
 import { UsuarioRefeicao } from 'src/app/models/usuario-refeicao.model';
@@ -26,7 +27,11 @@ export class ValidaUsuarioComponent implements OnInit {
   ngOnInit(): void {
     this.clientService.getClientData().subscribe((data) => {
       this.usuario = data;
+
     });
+  }
+  get clientExists():Observable<boolean>{
+    return of((this.usuario.qtd_refeicoes_gratis !== -1))
   }
 
   // retorna o ícone a ser utilizado na página de validação do usuário.
@@ -35,7 +40,7 @@ export class ValidaUsuarioComponent implements OnInit {
 
     if (this.usuario.qtd_refeicoes_gratis === -1) {
       icon = 'error_outline';
-    } else if (this.usuario.qtd_refeicoes_gratis > 0) {
+    } else if ((this.usuario.qtd_refeicoes_gratis - this.usuario.refeicoes.length) > 0) {
       icon = 'check_circle_outline';
     } else {
       icon = 'attach_money';
@@ -49,7 +54,7 @@ export class ValidaUsuarioComponent implements OnInit {
 
     if (this.usuario.qtd_refeicoes_gratis === -1) {
       cor = 'erro';
-    } else if (this.usuario.qtd_refeicoes_gratis > 0) {
+    } else if ((this.usuario.qtd_refeicoes_gratis - this.usuario.refeicoes.length) > 0) {
       cor = 'gratis';
     } else {
       cor = 'paga';
@@ -63,7 +68,7 @@ export class ValidaUsuarioComponent implements OnInit {
 
     if (this.usuario.qtd_refeicoes_gratis === -1) {
       frase = 'CPF não encontrado ou não cadastrado.';
-    } else if (this.usuario.qtd_refeicoes_gratis > 0) {
+    } else if ((this.usuario.qtd_refeicoes_gratis - this.usuario.refeicoes.length) > 0) {
       frase = 'refeição gratuita!';
     } else {
       frase = 'refeição a pagar!';
