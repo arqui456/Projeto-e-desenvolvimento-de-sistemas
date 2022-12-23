@@ -79,7 +79,9 @@ module.exports = {
           return;
         }
         const {valid, invalid} = getValidClients(records);
-        
+        for(let cliente of valid){
+          cliente['cpf'] = cliente['cpf'].replace(/\D+/g,'');
+        }
         fs.unlink(file.path,(err) => {if (err) { console.error(err)}});
         
         await Cliente.bulkCreate(valid, {
