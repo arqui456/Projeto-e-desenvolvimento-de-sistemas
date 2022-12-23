@@ -12,7 +12,7 @@ Alunos:
 
 ## Como executar ⚠️
 
-[Escrever um mini tutorial para os alunos que vão trabalhar nas turmas futuras] 
+Para desenvolver localmente, basta dar um npm install && npm run nos serviços do frontend e do backend, lembrando de criar um arquivo .env na pasta raiz do backend contendo as credenciais de um banco postgres, a seguir o nome das variáveis obrigatórias: DB_HOST, DB_USERNAME, DB_PASSWD, DB_NAME, SECRET_KEY e LIMIT_NUM_CLIENTE_PER_QUERY
 
 ## Informações de login e URL do ambiente de homologação 🖥️
 
