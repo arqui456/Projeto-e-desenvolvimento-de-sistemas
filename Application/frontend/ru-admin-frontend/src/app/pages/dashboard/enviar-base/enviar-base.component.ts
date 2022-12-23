@@ -1,5 +1,6 @@
 import { DatabaseService } from './../../../services/database.service';
 import { Component, OnInit } from '@angular/core';
+import { FuncionariosService } from 'src/app/services/funcionarios.service';
 
 @Component({
   selector: 'app-enviar-base',
@@ -9,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 export class EnviarBaseComponent implements OnInit {
   fileName: string
   fileToUpload: File | null = null;
-  constructor(private databaseService: DatabaseService) {
+  constructor(private databaseService: DatabaseService, private funcionariosService:FuncionariosService) {
     this.fileName = ''
   }
 
@@ -24,6 +25,8 @@ export class EnviarBaseComponent implements OnInit {
       })
       //let response = this.databaseService.sendCsvDatabase(this.fileToUpload);
       //console.log(response)
+    } else {
+      this.funcionariosService.showMessage('Erro: Envio inválido ou vazio.',true,'center','bottom' );
     }
   }
   onFileSelected(event: any) {

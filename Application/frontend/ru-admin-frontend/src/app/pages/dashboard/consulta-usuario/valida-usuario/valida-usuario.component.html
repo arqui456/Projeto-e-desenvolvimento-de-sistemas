@@ -4,7 +4,7 @@
     class="gap"
     *ngIf="usuario?.nome && usuario?.cpf && usuario?.matricula"
   >
-    <span id="nome-usuario">{{ usuario.nome }}</span>
+    <span id="nome-usuario">{{ usuario.nome | titlecase}}</span>
     <span id="cpf-usuario"><strong>CPF: </strong>{{ usuario.cpf }}</span>
     <span id="numero-matricula-usuario"
       ><strong>Matrícula: </strong> {{ usuario.matricula }}</span
@@ -15,7 +15,7 @@
     <span id="icon-container">
       <app-icon
         [icon]="getUserIcon()"
-        [size]="'lg'"
+        [size]="'md'"
         [attr.color]="getColor()"
       ></app-icon>
     </span>
