@@ -15,7 +15,6 @@ export class GerarRelatorioComponent implements OnInit {
     start: new FormControl<Date | null>(null),
     end: new FormControl<Date | null>(null),
   });
-  snackBar: any;
   constructor(private reportService: GenReportService) { }
 
   ngOnInit(): void { }
@@ -46,13 +45,10 @@ export class GerarRelatorioComponent implements OnInit {
       if(!buffer){
         this.reportService.showMessage('Erro: Não foi possível gerar o relatório.',true,'center','bottom' );
       }
-      else{
-        const data: Blob = new Blob([buffer], {
-          type: "text/csv;charset=utf-8"
-        });
-        saveAs(data, "relatorio_por_cpf.csv");
-      }
-     
+      const data: Blob = new Blob([buffer], {
+        type: "text/csv;charset=utf-8"
+      });
+      saveAs(data, "relatorio_por_cpf.csv");
     });
   }
 }

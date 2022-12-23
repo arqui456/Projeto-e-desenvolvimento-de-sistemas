@@ -22,6 +22,7 @@ export class GenReportService {
     return this.http.get(endpoint,{params: dates, headers, responseType: 'blob' as 'json'}).pipe(
       map((obj) => {
         this.showMessage('Relatório gerado com sucesso', false)
+        return obj;
       }),
       catchError((e) => this.errorHandler(e)),
     );
