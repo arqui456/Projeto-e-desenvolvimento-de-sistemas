@@ -1,4 +1,5 @@
-<mat-card class="main-card">
+<app-container-conteudo [class]="'controle-padding d-flex overflow-auto' ">
+<mat-card class="main-card mat-elevation-z0">
   <mat-card-title> Editar funcionário </mat-card-title>
   <form action="">
     <mat-form-field>
@@ -53,3 +54,4 @@
     <button mat-raised-button (click)="cancel()" color="warn">Cancelar</button>
   </div>
 </mat-card>
+</app-container-conteudo>

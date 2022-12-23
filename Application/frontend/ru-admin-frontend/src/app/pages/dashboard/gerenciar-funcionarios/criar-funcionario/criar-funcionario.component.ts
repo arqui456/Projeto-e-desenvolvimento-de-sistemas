@@ -15,6 +15,7 @@ export class CriarFuncionarioComponent implements OnInit {
     senha:''
   }
   senhaRepetida: string='';
+  hide: boolean = true;
   constructor(private funcionariosService:FuncionariosService , private router:Router) { }
 
   ngOnInit(): void {

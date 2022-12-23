@@ -1,11 +1,12 @@
 :root {
   --primary: #4B84D9;
-  // --primary-focus: #0039cb;
+  --primary-focus: #284283;
 
   --secondary: #16123F;
   --secondary-focus: #1c313a;
 
   --danger: #d32f2f;
+  --danger-focus: #721a1a;
   --text-disabled: #9e9e9e;
 
   --white-gray: #E8E6E6;
@@ -18,6 +19,7 @@
   --warn: #FFCC00;
 
   --default: #cecece;
+  --default-focus: #777777;
 
 
 }
@@ -72,4 +74,13 @@ input[type=number] {
 .mat-cell {
   word-break: break-all;
   padding-right: 0.6rem !important;
+}
+
+.msg-error {
+  background-color: var(--danger);
+}
+
+.msg-success {
+  background-color: var(--green);
+  color: var(--white);
 }

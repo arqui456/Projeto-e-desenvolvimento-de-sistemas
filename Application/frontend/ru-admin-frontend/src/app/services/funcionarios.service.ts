@@ -25,7 +25,7 @@ export class FuncionariosService {
     )
   }
   showMessage(msg: string, isError: boolean = false, hPosition:MatSnackBarHorizontalPosition = 'right', vPosition:MatSnackBarVerticalPosition = 'top'): void {
-    this.snackBar.open(msg, 'X', {
+    this.snackBar.open(msg, '', {
       duration: 3000,
       horizontalPosition: hPosition,
       verticalPosition: vPosition,

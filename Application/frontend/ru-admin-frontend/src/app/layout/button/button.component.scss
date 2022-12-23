@@ -74,23 +74,29 @@ button {
 }
 
 .default:hover,
-.default:focus,
-.primary:hover,
-.primary:focus,
-.secondary:hover,
-.secondary:focus,
-.danger:hover,
-.danger:focus,
-.outline:hover,
-.outline:focus {
-  filter: brightness(0.7);
-  position: relative;
-  cursor: pointer;
+.default:focus {
+  background-color: var(--default-focus);
 }
 
-//   .box-shadow {
-//     box-shadow: 0px 2px 3px rgba(51, 51, 51, 0.2);
-//   }
+.primary:hover,
+.primary:focus {
+  background-color: var(--primary-focus);
+}
+
+.secondary:hover,
+.secondary:focus {
+  background-color: var(--secondary-focus);
+}
+
+.danger:hover,
+.danger:focus {
+  background-color: var(--danger-focus);
+}
+
+.outline:hover,
+.outline:focus {
+  background-color: var(--default);
+}
 
 .outline {
   color: var(--primary);

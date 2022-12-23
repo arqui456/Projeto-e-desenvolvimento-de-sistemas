@@ -16,6 +16,7 @@ export class DeletarFuncionarioComponent implements OnInit {
     senha:"alguma senha"
   }
   senhaRepetida: string='';
+  hide: boolean = true;
   constructor(private funcionariosService:FuncionariosService , private router:Router, private route:ActivatedRoute) { }
 
   ngOnInit(): void {
