@@ -44,3 +44,6 @@ div {
   line-height: unset !important;
   width: unset !important;
 }
+.mat-form-field, button {
+  z-index: 1;
+}

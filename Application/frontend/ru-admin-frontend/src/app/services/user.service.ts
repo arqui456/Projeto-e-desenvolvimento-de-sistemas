@@ -23,7 +23,7 @@ export class UserService {
       return this.httpClient.post<any>(apiUrlUser + "/login", credentials).pipe(
       tap((response) =>{
         if(!response.auth) return;
-        //TODO: encripitar o token
+        //TODO: encripitar o tokenTu c
         localStorage.setItem('ru+_token', response["token"]);
         localStorage.setItem('ru+_user', response['user']['super_user']);
         this.userPrivilege = response['user']['super_user'];

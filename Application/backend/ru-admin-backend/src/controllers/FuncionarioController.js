@@ -13,6 +13,10 @@ module.exports = {
       let funcionarios;
       funcionarios = await Usuario.findAll();
       if(funcionarios){
+        console.log(funcionarios.length)
+        for(let funcionario of funcionarios){
+          funcionario.senha = ''
+        }
         return res.status(200).json(funcionarios);
       } else {
         return res.status(400).json({error: 'Nenhum funcionário encontrado.'});

@@ -11,7 +11,7 @@ import { ModalLoadingComponent } from 'src/app/layout/modal-loading/modal-loadin
 })
 export class ConsultaUsuarioComponent implements OnInit {
   validatedUsed: boolean = true;
-  cpfValue: string = '';
+  registrationOrCpfValue: string = '';
   clientData: IClient = {
     cpf: '',
     matricula: '',
@@ -42,8 +42,9 @@ export class ConsultaUsuarioComponent implements OnInit {
     this.validatedUsed = false;
   }
 
-  cpfHandler(cpf: string) {
-    this.cpfValue = cpf;
+  registrationCpfHandler(cpf: string) {
+    console.log(cpf);
+    this.registrationOrCpfValue = cpf;
   }
 
   handleUpdateClientData(data: IClient) {
@@ -55,7 +56,10 @@ export class ConsultaUsuarioComponent implements OnInit {
     this.clientService.setClient();
     this.modalLoading.abrir();
     //TODO: limpar . e - da string e checar tamanho
-    this.clientService.queryClient({ cpf: this.cpfValue }).subscribe({
+    console.log(this.registrationOrCpfValue);
+    this.registrationOrCpfValue = this.registrationOrCpfValue.replace(/\D+/g,'');
+    console.log(this.registrationOrCpfValue);
+    this.clientService.queryClient({ cpf: this.registrationOrCpfValue }).subscribe({
       next: this.handleUpdateClientData.bind(this),
       error: () => {
         this.handleUpdateClientData(this.clientDataReset);
