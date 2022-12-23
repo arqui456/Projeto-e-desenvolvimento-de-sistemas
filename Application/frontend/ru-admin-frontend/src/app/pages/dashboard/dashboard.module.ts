@@ -12,7 +12,7 @@ import { ValidaUsuarioComponent } from './consulta-usuario/valida-usuario/valida
 import { CpfPipe } from 'src/app/pipes/cpf.pipe';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { EnviarBaseComponent } from './enviar-base/enviar-base.component';
-import {MatButtonModule} from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GerarRelatorioComponent } from './gerar-relatorio/gerar-relatorio.component';
@@ -24,6 +24,7 @@ import { CriarFuncionarioComponent } from './gerenciar-funcionarios/criar-funcio
 import { MatCardModule } from '@angular/material/card';
 import { DeletarFuncionarioComponent } from './gerenciar-funcionarios/deletar-funcionario/deletar-funcionario.component';
 import { EditarFuncionarioComponent } from './gerenciar-funcionarios/editar-funcionario/editar-funcionario.component';
+import { MatIconModule } from '@angular/material/icon';
 @NgModule({
   declarations: [
     PaginaInicialComponent,
@@ -36,7 +37,7 @@ import { EditarFuncionarioComponent } from './gerenciar-funcionarios/editar-func
     GerenciarFuncionariosComponent,
     CriarFuncionarioComponent,
     DeletarFuncionarioComponent,
-    EditarFuncionarioComponent
+    EditarFuncionarioComponent,
   ],
   imports: [
     CommonModule,
@@ -45,7 +46,7 @@ import { EditarFuncionarioComponent } from './gerenciar-funcionarios/editar-func
     MatButtonModule,
     MatFormFieldModule,
     FormsModule,
-    MatDatepickerModule,  
+    MatDatepickerModule,
     MatNativeDateModule,
     MatDatepickerModule,
     ReactiveFormsModule,
@@ -54,7 +55,8 @@ import { EditarFuncionarioComponent } from './gerenciar-funcionarios/editar-func
     MatPaginatorModule,
     MatSortModule,
     MatSnackBarModule,
-    MatCardModule
+    MatCardModule,
+    MatIconModule,
   ],
   exports: [
     PaginaInicialComponent,
@@ -62,8 +64,6 @@ import { EditarFuncionarioComponent } from './gerenciar-funcionarios/editar-func
     ConsultaUsuarioComponent,
     // CpfPipe
   ],
-  providers:[
-    { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' }
-  ]
+  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'pt-BR' }],
 })
-export class DashboardModule { }
+export class DashboardModule {}

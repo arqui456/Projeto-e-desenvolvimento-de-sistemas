@@ -1,19 +1,48 @@
 <mat-card class="main-card">
-  <mat-card-title>
-    Editar funcionário
-  </mat-card-title>
+  <mat-card-title> Editar funcionário </mat-card-title>
   <form action="">
     <mat-form-field>
-      <input matInput placeholder="nome" [(ngModel)]="funcionario.nome" name="nome">
+      <input
+        matInput
+        placeholder="Nome"
+        [(ngModel)]="funcionario.nome"
+        name="nome"
+      />
     </mat-form-field>
     <mat-form-field>
-      <input matInput placeholder="username" [(ngModel)]="funcionario.username" name="username">
+      <input
+        matInput
+        placeholder="Username"
+        [(ngModel)]="funcionario.username"
+        name="username"
+      />
     </mat-form-field>
     <mat-form-field>
-      <input matInput placeholder="senha" [(ngModel)]="funcionario.senha" name="senha">
+      <!-- <input matInput placeholder="senha" [(ngModel)]="funcionario.senha" name="senha"> -->
+      <input
+        matInput
+        placeholder="Senha"
+        [type]="hide ? 'password' : 'text'"
+        [(ngModel)]="funcionario.senha"
+        name="senha"
+        required
+      />
+      <mat-icon matSuffix (click)="hide = !hide">{{
+        hide ? "visibility_off" : "visibility"
+      }}</mat-icon>
     </mat-form-field>
     <mat-form-field>
-      <input matInput placeholder="repetir" [(ngModel)]="senhaRepetida" name="senharepetir">
+      <input
+        matInput
+        placeholder="Digite novamente sua senha"
+        [(ngModel)]="senhaRepetida"
+        name="senharepetir"
+        [type]="hide ? 'password' : 'text'"
+        required
+      />
+      <mat-icon matSuffix (click)="hide = !hide">{{
+        hide ? "visibility_off" : "visibility"
+      }}</mat-icon>
     </mat-form-field>
   </form>
   <div>
@@ -21,9 +50,6 @@
       Salvar
     </button>
 
-    <button mat-raised-button (click)="cancel()" color="warn">
-      Cancelar
-    </button>
+    <button mat-raised-button (click)="cancel()" color="warn">Cancelar</button>
   </div>
-
 </mat-card>

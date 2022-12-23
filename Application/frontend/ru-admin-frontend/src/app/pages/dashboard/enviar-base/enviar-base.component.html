@@ -5,17 +5,31 @@
     <form action="">
       <!-- tamanho máximo pendente, verificar com o danilo -->
     </form>
-    <input type="file" class="file-input" accept=".csv"
-       (change)="onFileSelected($event)" #fileUpload>
-       <div class="file-upload">
+    <input
+      type="file"
+      class="file-input"
+      accept=".csv"
+      (change)="onFileSelected($event)"
+      #fileUpload
+    />
+    <div class="file-upload">
+      {{ fileName || "Nenhum arquivo selecionado." }}
 
-        {{fileName || "Nenhum arquivo selecionado."}}
-     
-         <button mat-mini-fab class="upload-btn primary" 
+      <!-- <button mat-mini-fab class="upload-btn primary" 
            (click)="fileUpload.click()">
              <em class="material-icons">attach_file</em>
-         </button>
-     </div>
+         </button> -->
+    </div>
+    <app-button
+      [btnLabel]="'Selecionar Arquivo'"
+      [btnIcon]="true"
+      [btnIconName]="'attach_file'"
+      [btnSize]="'lg'"
+      [btnColor]="'primary'"
+      [btnClass]="'outline'"
+      (click)="fileUpload.click()"
+      [btnIconPosition]="'left'"
+    ></app-button>
     <app-button
       [btnLabel]="'enviar base de dados'"
       [btnClass]="'button'"
@@ -26,8 +40,5 @@
       [btnColor]="'primary'"
       (click)="sendDataBase()"
     ></app-button>
-    
-
-
   </section>
 </app-container-conteudo>

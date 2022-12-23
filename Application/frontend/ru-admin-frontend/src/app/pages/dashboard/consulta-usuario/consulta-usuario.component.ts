@@ -7,21 +7,36 @@ import { ModalLoadingComponent } from 'src/app/layout/modal-loading/modal-loadin
 @Component({
   selector: 'app-consulta-usuario',
   templateUrl: './consulta-usuario.component.html',
-  styleUrls: ['./consulta-usuario.component.scss']
+  styleUrls: ['./consulta-usuario.component.scss'],
 })
 export class ConsultaUsuarioComponent implements OnInit {
-
   validatedUsed: boolean = true;
-  cpfValue: string = "";
+  cpfValue: string = '';
   clientData: IClient = {
-    cpf: '', matricula: '', nome: '', qtd_refeicoes_gratis: 0, refeicoes: [],
-    ativo: false
+    cpf: '',
+    matricula: '',
+    nome: '',
+    qtd_refeicoes_gratis: 0,
+    refeicoes: [],
+    ativo: false,
+  };
+
+  clientDataReset: IClient = {
+    cpf: '',
+    matricula: '',
+    nome: '',
+    qtd_refeicoes_gratis: -1,
+    refeicoes: [],
+    ativo: false,
   };
 
   @ViewChild('modalLoading', { static: false })
   modalLoading: ModalLoadingComponent = new ModalLoadingComponent();
 
-  constructor(private router: Router, public clientService: QueryClientService) { }
+  constructor(
+    private router: Router,
+    public clientService: QueryClientService
+  ) {}
 
   ngOnInit(): void {
     this.validatedUsed = false;
@@ -31,16 +46,21 @@ export class ConsultaUsuarioComponent implements OnInit {
     this.cpfValue = cpf;
   }
 
+  handleUpdateClientData(data: IClient) {
+    this.clientData = data;
+    this.modalLoading.fechar();
+  }
+
   queryUserEvent() {
     this.clientService.setClient();
     this.modalLoading.abrir();
     //TODO: limpar . e - da string e checar tamanho
-    this.clientService.queryClient({ cpf: this.cpfValue})
-      .subscribe(data => {
-        this.clientData = data;
-        this.modalLoading.fechar();
+    this.clientService.queryClient({ cpf: this.cpfValue }).subscribe({
+      next: this.handleUpdateClientData.bind(this),
+      error: () => {
+        this.handleUpdateClientData(this.clientDataReset);
+      },
     });
     this.clientService.setClientData(this.clientData);
   }
-
 }

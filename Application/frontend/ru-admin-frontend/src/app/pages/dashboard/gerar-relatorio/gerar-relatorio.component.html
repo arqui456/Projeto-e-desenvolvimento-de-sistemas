@@ -1,35 +1,46 @@
 <app-container-conteudo>
   <app-logo></app-logo>
-  
+
   <div>
-    <h2>Gerar relatórios</h2>
+    <h2 class="mt mb">Gerar relatórios</h2>
     <div id="input-datas">
-      <mat-form-field appearance="fill" class="fw mat-elevation-z-1" >
+      <mat-form-field appearance="fill" class="fw mat-elevation-z-0">
         <mat-label>Escolha o intervalo</mat-label>
         <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
-          <input matStartDate formControlName="start" placeholder="Start date">
-          <input matEndDate formControlName="end" placeholder="End date">
+          <input
+            matStartDate
+            formControlName="start"
+            placeholder="Start date"
+          />
+          <input matEndDate formControlName="end" placeholder="End date" />
         </mat-date-range-input>
-        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker"
+        ></mat-datepicker-toggle>
         <mat-date-range-picker #picker></mat-date-range-picker>
-      
-        <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">Invalid start date</mat-error>
-        <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Invalid end date</mat-error>
+
+        <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')"
+          >Invalid start date</mat-error
+        >
+        <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')"
+          >Invalid end date</mat-error
+        >
       </mat-form-field>
     </div>
     <p>Escolha o relatório para ser baixado no intervalo das datas acima</p>
-  <app-button
-    [btnLabel]="'GERAR RELATÓRIO DIÁRIO'"
-    [btnClass]="'button'"
-    [btnIcon]="true"
-    [btnIconName]="'arrow_downward'"
-    [btnIconPosition]="'left'"
-    [btnSize]="'lg'"
-    [btnColor]="'primary'"
-    class="mt"
-    (click)="gerarRelatorioDiario()"
-  ></app-button>
-  <!-- <app-button
+    <app-button
+      [btnLabel]="'GERAR RELATÓRIO DIÁRIO'"
+      [btnClass]="'button'"
+      [btnIcon]="true"
+      [btnIconName]="'arrow_downward'"
+      [btnIconPosition]="'left'"
+      [btnSize]="'lg'"
+      [btnColor]="'primary'"
+      class="mt"
+      (click)="gerarRelatorioDiario()"
+    ></app-button>
+    <!-- <app-button
     [btnLabel]="'GERAR RELATÓRIO DE ALUNOS'"
     [btnClass]="'button'"
     [btnIcon]="true"
@@ -40,5 +51,5 @@
     class="mt"
     (click)="gerarRelatorioAlunos()"
   ></app-button> -->
-</div>
+  </div>
 </app-container-conteudo>

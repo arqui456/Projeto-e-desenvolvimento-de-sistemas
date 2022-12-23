@@ -1,14 +1,22 @@
-form{
+form {
   display: flex;
   flex-direction: column;
-  max-width: 200px;
+  min-width: 200px;
+  width: 40vw;
 }
-button{
-  margin: 20px 15px 0 0;
+button {
+  margin: 10px 15px 20px 0px;
 }
-.main-card{
+.main-card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  z-index: 0;
+}
+
+.mat-card {
+  background: none !important;
+}
+
+.mat-card:not([class*="mat-elevation-z"]) {
+  box-shadow: none;
 }

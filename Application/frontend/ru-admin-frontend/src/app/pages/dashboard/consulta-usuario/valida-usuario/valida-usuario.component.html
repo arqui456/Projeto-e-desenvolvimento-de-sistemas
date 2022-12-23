@@ -1,34 +1,38 @@
 <app-container-conteudo [class]="'controle-padding d-flex'">
-    <section id="info-usuario-refeicao" class="gap">
-        <span id="nome-usuario">{{ usuario.nome }}</span>
-        <span id="cpf-usuario"><strong>CPF: </strong>{{ usuario.cpf }}</span>
-        <span id="numero-matricula-usuario"><strong>Matrícula: </strong> {{ usuario.matricula }}</span>
-    </section>
+  <section
+    id="info-usuario-refeicao"
+    class="gap"
+    *ngIf="usuario?.nome && usuario?.cpf && usuario?.matricula"
+  >
+    <span id="nome-usuario">{{ usuario.nome }}</span>
+    <span id="cpf-usuario"><strong>CPF: </strong>{{ usuario.cpf }}</span>
+    <span id="numero-matricula-usuario"
+      ><strong>Matrícula: </strong> {{ usuario.matricula }}</span
+    >
+  </section>
 
-    <section id="info-gratuidade" class="gap">
-        <span id="icon-container">
-                <app-icon
-                    [icon]="getUserIcon()"
-                    [size]="'lg'"
-                    class="refeicao-color"
-                ></app-icon>
-        </span>
-        <span id="tipo-refeicao-text" class="refeicao-color">{{ getTextoRefeicao() | uppercase}}</span> 
-    </section>
+  <section id="info-gratuidade" class="gap">
+    <span id="icon-container">
+      <app-icon
+        [icon]="getUserIcon()"
+        [size]="'lg'"
+        [attr.color]="getColor()"
+      ></app-icon>
+    </span>
+    <span id="tipo-refeicao-text" [attr.color]="getColor()">{{
+      getTextoRefeicao() | uppercase
+    }}</span>
+  </section>
 
-    <section id="buttons" class="gap">
-        <app-button
-            [btnLabel]="'voltar'"
-            [btnSize]="'sm'"
-            (click) ='voltar()'
-        >
-        </app-button>
-        <app-button
-            [btnLabel]="'confirmar refeição'"
-            [btnColor]="'primary'"
-            [btnSize]="'md'"
-            (click) ='enviar()'
-        >
-        </app-button>
-    </section>
+  <section id="buttons" class="gap">
+    <app-button [btnLabel]="'voltar'" [btnSize]="'sm'" (click)="voltar()">
+    </app-button>
+    <app-button
+      [btnLabel]="'confirmar refeição'"
+      [btnColor]="'primary'"
+      [btnSize]="'md'"
+      (click)="enviar()"
+    >
+    </app-button>
+  </section>
 </app-container-conteudo>
