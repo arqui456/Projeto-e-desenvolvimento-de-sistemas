@@ -1,5 +1,5 @@
 build:
-  docker:
-    web: /Application/frontend/ru-admin-frontend/Dockerfile
+    docker:
+      web: /Application/frontend/ru-admin-frontend/Dockerfile
 run:
-  web: npm run start
+    web: npm run start
