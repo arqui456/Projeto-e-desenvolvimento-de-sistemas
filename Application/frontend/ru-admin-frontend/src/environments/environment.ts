@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: (process.env["HOST"] || "http://0.0.0.0:") + (process.env["PORT"] || "3000")
+  apiUrl: ("https://ru-admin-dev.herokuapp.com" || "http://0.0.0.0:3000")
 };
 
 /*
