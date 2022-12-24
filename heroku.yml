@@ -7,4 +7,4 @@ run:
   worker:
     command:
       - npm run start
-    image: web
+    image: worker
