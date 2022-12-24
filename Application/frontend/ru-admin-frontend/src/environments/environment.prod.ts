@@ -1,4 +1,4 @@
 export const environment = {
-  production: true,
-  apiUrl: "http://localhost:3000"
+  production: false,
+  apiUrl: (process.env["HOST"] || "http://0.0.0.0:") + (process.env["PORT"] || "17860")
 };

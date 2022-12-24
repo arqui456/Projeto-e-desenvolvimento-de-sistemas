@@ -20,6 +20,7 @@ export class UserService {
   private sidebarItens:SidebarItem[] = [];
 
   login(credentials: UserCredentials): Observable<any>{
+    console.log(apiUrlUser)
       return this.httpClient.post<any>(apiUrlUser + "/login", credentials).pipe(
       tap((response) =>{
         if(!response.auth) return;
