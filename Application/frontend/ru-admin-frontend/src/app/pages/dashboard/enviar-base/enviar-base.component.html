@@ -1,0 +1,39 @@
+<app-container-conteudo [class]="'controle-padding d-flex'">
+  <app-logo></app-logo>
+  <h2 id="title">Enviar base de dados</h2>
+  <section class="gap">
+    <form action="">
+      <!-- tamanho máximo pendente, verificar com o danilo -->
+    </form>
+    <input
+      type="file"
+      class="file-input"
+      accept=".csv"
+      (change)="onFileSelected($event)"
+      #fileUpload
+    />
+    <div class="file-upload">
+      {{ fileName || "Nenhum arquivo selecionado." }}
+    </div>
+    <app-button
+      [btnLabel]="'Selecionar Arquivo'"
+      [btnIcon]="true"
+      [btnIconName]="'attach_file'"
+      [btnSize]="'lg'"
+      [btnColor]="'primary'"
+      [btnClass]="'outline'"
+      (click)="fileUpload.click()"
+      [btnIconPosition]="'left'"
+    ></app-button>
+    <app-button
+      [btnLabel]="'enviar base de dados'"
+      [btnClass]="'button'"
+      [btnIcon]="true"
+      [btnIconName]="'send'"
+      [btnIconPosition]="'left'"
+      [btnSize]="'lg'"
+      [btnColor]="'primary'"
+      (click)="sendDataBase()"
+    ></app-button>
+  </section>
+</app-container-conteudo>

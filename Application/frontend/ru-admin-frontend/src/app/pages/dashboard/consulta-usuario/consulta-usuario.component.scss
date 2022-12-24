@@ -1,0 +1,11 @@
+#title {
+    margin-bottom: 32px;
+}
+
+.gap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    flex-direction: column;
+    align-items: center;
+}

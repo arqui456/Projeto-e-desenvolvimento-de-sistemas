@@ -19,9 +19,9 @@ module.exports = {
       const token = jwt.sign(
         {usuario_id: user.usuario_id},
         process.env.SECRET_KEY,
-        {expiresIn: 3600}
+        {expiresIn: 18000}
       );
-      res.json({auth: true, token});
+      res.json({auth: true, token, user});
     } catch (err) {
       console.error(err);
       return res.status(500).json({error: 'Ocorreu um erro ao fazer a autenticacao.'});

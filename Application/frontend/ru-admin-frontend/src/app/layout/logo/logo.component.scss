@@ -1,0 +1,19 @@
+.logo-container {
+    display: flex;
+    flex-direction: column;
+    // justify-content: center;
+    align-items: center
+}
+
+.logo {
+    width: 80px;
+    // height: 175px;
+}
+
+.titulo {
+    color: var(--secondary);
+    // font-height: 500;
+    font-weight: bold;
+    font-size: 33px;
+    line-height: 36px;
+}

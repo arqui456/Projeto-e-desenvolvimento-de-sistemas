@@ -1,0 +1,52 @@
+<app-container-conteudo [class]="'controle-padding d-flex overflow-auto'">
+<mat-card class="main-card">
+  <mat-card-title>
+    Criar funcionario
+  </mat-card-title>
+  <form action="">
+    <mat-form-field>
+      <input matInput placeholder="Nome" [(ngModel)]="funcionario.nome" name="nome" required>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Username" [(ngModel)]="funcionario.username" name="username" required>
+    </mat-form-field>
+    <mat-form-field>
+      <!-- <input matInput placeholder="Senha" [(ngModel)]="funcionario.senha" name="senha" required> -->
+      <input
+        matInput
+        placeholder="Senha"
+        [type]="hide ? 'password' : 'text'"
+        [(ngModel)]="funcionario.senha"
+        name="senha"
+        required
+      />
+      <mat-icon matSuffix (click)="hide = !hide">{{
+        hide ? "visibility_off" : "visibility"
+      }}</mat-icon>
+    </mat-form-field>
+    <mat-form-field>
+      <!-- <input matInput placeholder="Repetir senha" [(ngModel)]="senhaRepetida" name="senharepetir" required> -->
+      <input
+        matInput
+        placeholder="Digite novamente sua senha"
+        [(ngModel)]="senhaRepetida"
+        name="senharepetir"
+        [type]="hide ? 'password' : 'text'"
+        required
+      />
+      <mat-icon matSuffix (click)="hide = !hide">{{
+        hide ? "visibility_off" : "visibility"
+      }}</mat-icon>
+    </mat-form-field>
+  </form>
+  <div>
+    <button mat-raised-button (click)="cancel()" color="warn">
+      Cancelar
+    </button>
+    <button mat-raised-button (click)="criarFuncionario()" color="primary" type="submit">
+      Salvar
+    </button>
+  </div>
+
+</mat-card>
+</app-container-conteudo>

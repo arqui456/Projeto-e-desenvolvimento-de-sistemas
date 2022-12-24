@@ -1,0 +1,34 @@
+#title {
+  margin: 1rem 0 32px 0;
+}
+
+.gap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  flex-direction: column;
+}
+
+form input {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.primary {
+  background-color: var(--primary);
+  color: var(--white);
+}
+
+.file-input {
+  display: none;
+}
+
+.file-upload {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}

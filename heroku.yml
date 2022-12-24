@@ -1,5 +1,10 @@
 build:
   docker:
-    web: /Application/backend/ru-admin-backend/Dockerfile
+    web: /Application/frontend/ru-admin-frontend/Dockerfile
+    worker: /Application/backend/ru-admin-backend/Dockerfile
 run:
   web: npm run start
+  worker:
+    command:
+      - npm run start
+    image: web

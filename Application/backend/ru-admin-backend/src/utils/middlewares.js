@@ -7,6 +7,7 @@ module.exports = {
     if (!token) { return res.status(401).end(); }
 
     const [bearer, hash] = token.split(' ');
+    
     jwt.verify(hash, process.env.SECRET_KEY, (err, encoded) => {
       if (err) { return res.status(401).end(); }
       req.usuario_id = encoded.usuario_id;
@@ -22,7 +23,7 @@ module.exports = {
       next();
     } catch (err) {
       console.error(err);
-      return res.status(500).json({error: 'Ocorreu um erro ao fazer a autenticacao.'});
+      return res.status(500).json({error: 'Usuário não autorizado.'});
     }
   }
 }

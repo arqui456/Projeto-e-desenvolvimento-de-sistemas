@@ -1,0 +1,18 @@
+<div class="input-container">
+    <input
+        id="{{ 'input-' + tipoEntrada + '_' + id }}"
+        [type]="tipoEntrada"
+        [disabled]="isDisabled"
+        [placeholder]="placeholder"
+        (ngModelChange)="onChangeValue($event.toString())"
+        [class.erro]="mostraErro"
+        [class.sm]="inputSize == 'sm'"
+        [class.md]="inputSize == 'md'"
+        [class.lg]="inputSize == 'lg'"
+        [formControl]="emailFormControl"
+    >
+    <div class="erro-container" *ngIf="mostraErro">
+        <app-icon [icon]="'highlight_off'"></app-icon>
+        <span class="msg-erro">{{ msgErro }}</span>
+    </div>
+</div>

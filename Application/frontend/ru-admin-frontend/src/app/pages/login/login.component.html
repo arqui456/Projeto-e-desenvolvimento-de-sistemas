@@ -1,0 +1,32 @@
+<app-container-conteudo id="header">
+    <app-logo></app-logo>
+
+    <app-container-conteudo id="formulario-login" [class]="'controle-padding d-flex'" [allViewHeight]="false"> 
+        <app-input
+            (inputValueChange) = "emailHandler($event.toString())"
+            type = "email"
+            formControlName = "email"
+            class="margin-top"
+            [placeholder]="'E-mail'"
+            [inputSize]="'md'"
+        ></app-input>
+        <app-input
+            (inputValueChange) = "passwordHandler($event.toString())"
+            type = "password"
+            formControlName = "password"
+            class="margin-top"
+            [placeholder]="'Senha'"
+            [tipoEntrada]="'password'"
+            [inputSize]="'md'"
+        ></app-input>
+        <app-button
+            (click) = "login()"
+            class="margin-top"
+            [btnColor]="'primary'"
+            [btnClass]="'button'"
+            [btnLabel]="'entrar'"
+            [btnSize]="'md'"
+        ></app-button>
+    </app-container-conteudo>
+    
+</app-container-conteudo>

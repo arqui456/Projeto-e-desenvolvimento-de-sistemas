@@ -2,17 +2,17 @@ version: '3'
 services:
   api:
     image: node-docker-backend
-    build: .
     networks:
       - backend
     ports:
       - "3000:3000"
 
-  web-cli:
-    image: node-docker-backend
+  web:
+    image: node-docker-frontend
     networks:
       - backend
-    command: sh
+    ports:
+      - "4200:4200"
 
 networks:
   backend:

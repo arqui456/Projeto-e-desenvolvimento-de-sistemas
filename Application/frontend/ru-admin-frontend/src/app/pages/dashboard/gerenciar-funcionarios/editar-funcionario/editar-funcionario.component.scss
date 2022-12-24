@@ -1,0 +1,22 @@
+form {
+  display: flex;
+  flex-direction: column;
+  min-width: 200px;
+  width: 40vw;
+}
+button {
+  margin: 10px 15px 20px 0px;
+}
+.main-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mat-card {
+  background: none !important;
+}
+
+.mat-card:not([class*="mat-elevation-z"]) {
+  box-shadow: none;
+}

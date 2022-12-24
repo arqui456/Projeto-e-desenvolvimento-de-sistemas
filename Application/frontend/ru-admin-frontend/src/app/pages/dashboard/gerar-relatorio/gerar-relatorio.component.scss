@@ -1,0 +1,49 @@
+.mt {
+  margin-top: 1rem;
+}
+
+// ::ng-deep mat-form-field {
+//   z-index: unset !important;
+// }
+
+.mb {
+  margin-bottom: 1rem;
+}
+
+.fillSpace {
+  display: flex;
+  flex-direction: row;
+}
+
+.mat-form-field-type-mat-date-range-input .mat-form-field-infix {
+  width: 300;
+}
+
+div {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+}
+
+.md-icon-button+.md-datepicker-input-container {
+  float: left;
+  margin-top: 7px;
+}
+
+.fw {
+  width: 350px;
+}
+
+.material-icons {
+  font-size: 20px !important;
+}
+
+.mat-icon.mat-icon-inline {
+  height: unset !important;
+  line-height: unset !important;
+  width: unset !important;
+}
+.mat-form-field, button {
+  z-index: 1;
+}

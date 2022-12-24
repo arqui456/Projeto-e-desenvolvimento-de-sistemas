@@ -1,14 +1,18 @@
 const ClienteRefeicao = require('../models/ClienteRefeicao');
 const Refeicao = require('../models/Refeicao');
 const Cliente = require("../models/Cliente");
-const { LIMIT_ALMOCO, ALMOCO, JANTAR } = require('../utils/constants');
+const { LIMIT_ALMOCO, ALMOCO, JANTAR, INITIAL_DATE } = require('../utils/constants');
 const { filterWithJustStart, filterWithStartEnd, filterWithJustEnd, association } = require("../utils/clienteRefeicaoHelper");
+require('../utils/constants');
+const sequelize = require('sequelize');
 
 
 module.exports = {
   async getRefeicoes(req, res) {
     try {
-      const { startDate, endDate } = req.query;
+      let { startDate, endDate } = req.query;
+      startDate = startDate || INITIAL_DATE;
+      endDate = endDate || new Date();
       
       let refeicoes;
       if (startDate && endDate) {
@@ -18,7 +22,7 @@ module.exports = {
       } else if (endDate) {
         refeicoes = await ClienteRefeicao.findAll(filterWithJustEnd(startDate));
       } else {
-        refeicoes = await ClienteRefeicao.findAll(association);
+        refeicoes = await ClienteRefeicao.findAll({...association});
       }
       return res.status(200).json(refeicoes);
     } catch (err) {
@@ -47,7 +51,7 @@ module.exports = {
 
 async function getRefeicaoByTime() {
   let nome = JANTAR;
-  if (new Date() < LIMIT_ALMOCO) {
+  if (new Date().getHours() < LIMIT_ALMOCO.getHours()) {
     nome = ALMOCO;
   }
   return  await Refeicao.findOne({ where: {nome} });

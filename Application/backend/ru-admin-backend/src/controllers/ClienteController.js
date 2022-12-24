@@ -1,7 +1,8 @@
-const sequelize = require('../database');
+const sqlz = require("sequelize");
 const Cliente = require('../models/Cliente');
 const fs = require('fs');
 const { parse } = require('csv-parse');
+const dateTime = require('date-and-time');
 
 
 module.exports = {
@@ -20,11 +21,37 @@ module.exports = {
     try {
       const { cpf, matricula } = req.query;
 
+      let todayDate = new Date();
+      todayDate.setHours(0, 0, 0, 0);
+      dateTime.addHours(todayDate, -3);
+
       let cliente;
       if (cpf) {
-        cliente = await Cliente.findOne({ where: { cpf }, include: {association: 'refeicoes'}});
+        cliente = await Cliente.findOne({ 
+          where: { cpf }, 
+          include: [{
+            association: 'refeicoes',
+            required:false,
+            where: {
+              createdAt: {
+                [sqlz.Op.gte]: todayDate.toISOString(),
+              }
+            }
+          }]
+        });
       } else if (matricula) {
-        cliente = await Cliente.findOne({ where: { matricula }});
+        cliente = await Cliente.findOne({ 
+          where: { matricula },
+          include: [{
+            association: 'refeicoes',
+            required:false,
+            where: {
+              createdAt: {
+                [sqlz.Op.gte]: todayDate.toISOString(),
+              }
+            }
+          }]
+        });
       } else {
         return res.status(400).json({error: 'CPF ou matricula necessarios para realizar a consulta.'});
       }
@@ -32,7 +59,7 @@ module.exports = {
       if (!cliente){
         return res.status(400).json({error: 'cliente nao encontrado.'});
       }
-      return res.json(cliente);
+      return res.status(200).json(cliente);
     } catch (err) {
       console.error(err);
       return res.status(500).json({error: 'Ocorreu um erro o recuperar as informacoes do cliente.'});
@@ -45,22 +72,23 @@ module.exports = {
       const isInvalid = validateFile(file, res);
       if (isInvalid) { return; }
 
-      const couldNotUpdate = [];
-
+      
       fs.createReadStream(file.path).pipe(parse({columns: true}, async (err, records) => {
         if (!records || (records.length > 0 && !validateFields(records[0]))) { 
           res.status(500).json({error: 'O nome de alguma coluna está fora do padrao.'});
           return;
         }
-        const clientes = getValidClients(records);
-
+        const {valid, invalid} = getValidClients(records);
+        for(let cliente of valid){
+          cliente['cpf'] = cliente['cpf'].replace(/\D+/g,'');
+        }
         fs.unlink(file.path,(err) => {if (err) { console.error(err)}});
         
-        await Cliente.bulkCreate(clientes, {
+        await Cliente.bulkCreate(valid, {
           updateOnDuplicate: ['nome', 'ativo', 'qtd_refeicoes_gratis'],
         });
         
-        res.status(200).json({couldNotUpdate});
+        res.status(200).json({couldNotUpdate: invalid});
       }));
       
     } catch (err) {
@@ -89,13 +117,15 @@ function validateFields(cliente) {
 
 
 function getValidClients(clientes) {
-  return clientes.filter(cliente => {
+  const invalid = [];
+  const valid = clientes.filter(cliente => {
     if (!isClienteValid(cliente)) {
-      couldNotUpdate.push(cliente);
+      invalid.push(cliente);
       return false;
     }
     return true;
   });
+  return {valid, invalid};
 }
 
 

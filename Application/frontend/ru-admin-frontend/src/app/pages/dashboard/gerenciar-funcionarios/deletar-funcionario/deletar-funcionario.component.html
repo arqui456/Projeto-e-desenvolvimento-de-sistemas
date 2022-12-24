@@ -1,0 +1,25 @@
+<app-container-conteudo [class]="'controle-padding d-flex overflow-auto'">
+<mat-card class="main-card">
+  <mat-card-title>
+    Remover funcionário
+  </mat-card-title>
+  <form action="">
+    <mat-form-field>
+      <input matInput placeholder="Nome" [(ngModel)]="funcionario.nome" name="nome" required disabled>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Username" [(ngModel)]="funcionario.username" name="username" required disabled>
+    </mat-form-field>
+  </form>
+  <div>
+    <button mat-raised-button (click)="cancel()">
+      Voltar
+    </button>
+
+    <button mat-raised-button (click)="deletarFuncionario()" color="warn">
+      Deletar
+    </button>
+  </div>
+
+</mat-card>
+</app-container-conteudo>
