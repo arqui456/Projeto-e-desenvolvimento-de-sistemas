@@ -16,9 +16,15 @@ Para desenvolver localmente, basta dar um npm install && npm run nos serviços d
 
 ## Informações de login e URL do ambiente de homologação 🖥️
 
-Para acessar a aplicação, acesse >> [url.com.br] com as credenciais: 
-- Login: *******
-- Password: ******* 
+Para acessar a aplicação, acesse >> https://restaurante-universitario-ufal.herokuapp.com/ com as seguintes credenciais: 
+
+### Para logar como Administrador:
+- Login: AlexPROEST
+- Password: istoEhUmaSenhaSegura123
+
+### Para logar como Funcionário: 
+- Login: funcionarioRU
+- Senha: maisUmDiaDeTrabalho321
 
 ## Documentações 📄📃
 - Clique [aqui](https://drive.google.com/drive/folders/1EIDP4p-Wo0za1N68_VSunKPJ9H6XwsNW?usp=sharing) para acessar a Documentação Técnica;
